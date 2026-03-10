@@ -1,0 +1,184 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  animation: fadeIn 0.2s ease;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 420px;
+  max-width: 100vw;
+  background: var(--gray-50);
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.2);
+  animation: slideInRight 0.3s ease;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--white);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--black);
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  font-size: 11px;
+  color: var(--gray-400);
+  font-weight: 600;
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  color: var(--gray-600);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--ease-default);
+  flex-shrink: 0;
+}
+
+.closeBtn:hover {
+  background: var(--gray-200);
+}
+
+/* ── Body ── */
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.itemList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.clearBtn {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  align-self: center;
+  padding: 4px 8px;
+  transition: color var(--ease-default);
+}
+
+.clearBtn:hover {
+  color: var(--red-warn);
+}
+
+/* ── Empty state ── */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.emptyIcon {
+  font-size: 40px;
+  opacity: 0.4;
+}
+
+.empty p {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-600);
+}
+
+.emptyHint {
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  color: var(--gray-400) !important;
+}
+
+/* ── Footer ── */
+.footer {
+  padding: 16px 20px 20px;
+  border-top: 1px solid var(--gray-200);
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.totals {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-600);
+}
+
+.discount {
+  color: var(--green-disc);
+  font-weight: 600;
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.totalFinal {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--black);
+  padding-top: 6px;
+  border-top: 1px solid var(--gray-200);
+  margin-top: 4px;
+}
+
+.totalFinal span:last-child {
+  color: var(--gold);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .drawer {
+    width: 100vw;
+  }
+}

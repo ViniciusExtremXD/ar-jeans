@@ -1,0 +1,85 @@
+.box {
+  background: var(--green-light);
+  border: 1px solid rgba(27, 122, 62, 0.25);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+}
+
+.title {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--green-disc);
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.title::before {
+  content: '🏷️';
+  font-size: 11px;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+.card {
+  flex: 1;
+  background: var(--white);
+  border: 1px solid rgba(27, 122, 62, 0.2);
+  border-radius: var(--radius-md);
+  padding: 7px 10px;
+  text-align: center;
+  transition: all var(--ease-default);
+  opacity: 0.6;
+}
+
+.card.active {
+  opacity: 1;
+  border-color: var(--green-disc);
+  background: #e0f5e9;
+  box-shadow: 0 2px 8px rgba(27, 122, 62, 0.15);
+}
+
+.card.past {
+  opacity: 0.5;
+}
+
+.value {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--green-disc);
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+
+.label {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--gray-600);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.sub {
+  font-size: 8px;
+  color: var(--gray-400);
+  font-style: italic;
+  margin-top: 1px;
+}
+
+.warning {
+  margin-top: 8px;
+  font-size: 10px;
+  color: var(--red-warn);
+  background: var(--red-light);
+  border: 1px solid rgba(211, 47, 47, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+}

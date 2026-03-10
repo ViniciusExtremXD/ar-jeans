@@ -1,0 +1,50 @@
+import type { Product } from '@/types/product';
+import { formatCurrency } from '@/utils/format';
+import { Badge } from '@/components/ui/Badge';
+import styles from './ProductCard.module.css';
+
+interface Props {
+  product: Product;
+  onClick: () => void;
+}
+
+export function ProductCard({ product, onClick }: Props) {
+  const firstColor = product.colors[0];
+  const photo = firstColor?.photos[0];
+
+  return (
+    <button className={styles.card} onClick={onClick} type="button">
+      <div className={styles.imageWrap}>
+        {photo && (
+          <img
+            className={styles.image}
+            src={photo.src}
+            alt={photo.alt}
+            loading="lazy"
+          />
+        )}
+        {product.badges.length > 0 && (
+          <div className={styles.badges}>
+            {product.badges.map((b, i) => (
+              <Badge key={i} badge={b} />
+            ))}
+          </div>
+        )}
+      </div>
+      <div className={styles.info}>
+        <span className={styles.type}>{product.typeLabel}</span>
+        <h3 className={styles.name}>{product.name}</h3>
+        <p className={styles.desc}>{product.shortDescription}</p>
+        <div className={styles.meta}>
+          <span className={styles.price}>
+            {formatCurrency(product.basePrice)}
+          </span>
+          <span className={styles.colors}>
+            {product.colors.length} cor{product.colors.length > 1 ? 'es' : ''}
+          </span>
+        </div>
+        <span className={styles.cta}>Ver Detalhes →</span>
+      </div>
+    </button>
+  );
+}

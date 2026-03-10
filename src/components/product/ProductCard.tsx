@@ -1,5 +1,6 @@
 import type { Product } from '@/types/product';
 import { formatCurrency } from '@/utils/format';
+import { asset } from '@/utils/asset';
 import { Badge } from '@/components/ui/Badge';
 import styles from './ProductCard.module.css';
 
@@ -18,7 +19,7 @@ export function ProductCard({ product, onClick }: Props) {
         {photo && (
           <img
             className={styles.image}
-            src={photo.src}
+            src={asset(photo.src)}
             alt={photo.alt}
             loading="lazy"
           />

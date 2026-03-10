@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import type { ProductColor } from '@/types/product';
+import { asset } from '@/utils/asset';
 import { Badge } from '@/components/ui/Badge';
 import type { Badge as BadgeType } from '@/types/product';
 import styles from './PhotoGallery.module.css';
@@ -56,7 +57,7 @@ export function PhotoGallery({
         {current && (
           <img
             className={`${styles.mainPhoto} ${fading ? styles.fading : ''}`}
-            src={current.src}
+            src={asset(current.src)}
             alt={current.alt}
           />
         )}
@@ -74,7 +75,7 @@ export function PhotoGallery({
               onClick={() => switchPhoto(i)}
               type="button"
             >
-              <img src={photo.src} alt={photo.label} />
+              <img src={asset(photo.src)} alt={photo.label} />
               <span className={styles.thumbLabel}>{photo.label}</span>
             </button>
           ))}

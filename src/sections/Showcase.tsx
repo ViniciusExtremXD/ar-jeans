@@ -16,7 +16,7 @@ export function Showcase({ onProductSelect }: Props) {
         <span className={styles.tag}>COLEÇÃO</span>
         <h2 className={styles.title}>Nossas Peças</h2>
         <p className={styles.subtitle}>
-          Selecione um modelo para montar seu pedido no atacado
+          Selecione um modelo para montar seu pedido
         </p>
       </div>
 

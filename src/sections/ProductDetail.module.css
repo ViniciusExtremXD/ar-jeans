@@ -252,37 +252,51 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+  .overlay {
+    align-items: flex-start;
+    justify-content: center;
+  }
+
   .modal {
     grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
     max-height: 100vh;
+    max-height: 100dvh;
     height: 100vh;
+    height: 100dvh;
     width: 100%;
     max-width: 100%;
     border-radius: 0;
+    overflow: hidden;
   }
 
   .gallery {
-    height: 38vh;
-    max-height: 320px;
+    height: 36vh;
+    height: 36dvh;
+    max-height: 300px;
   }
 
   .info {
     max-height: none;
-    flex: 1;
     min-height: 0;
+    overflow: hidden;
   }
 
   .scrollArea {
-    padding: 16px 16px 12px;
+    padding: 14px 16px 12px;
     gap: 10px;
+    min-height: 0;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .name {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .priceTag {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .priceBlock {
@@ -300,34 +314,48 @@
 
   .summary {
     padding: 10px 16px;
+    flex-shrink: 0;
   }
 
   .summaryTotal {
     font-size: 20px;
   }
+
+  .closeBtn {
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
 }
 
 @media (max-width: 400px) {
   .gallery {
-    height: 34vh;
-    max-height: 280px;
+    height: 32vh;
+    height: 32dvh;
+    max-height: 260px;
   }
 
   .name {
-    font-size: 26px;
+    font-size: 24px;
   }
 
   .scrollArea {
-    padding: 12px 12px 8px;
+    padding: 10px 12px 8px;
     gap: 8px;
   }
 
   .priceTag {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .orderPanel {
-    padding: 12px;
+    padding: 10px;
     gap: 8px;
+  }
+
+  .summary {
+    padding: 8px 12px;
   }
 }

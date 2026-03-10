@@ -228,7 +228,8 @@
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .gallery {
-    min-height: 280px;
+    min-height: 0;
+    height: 100%;
   }
 
   .shapeTop {
@@ -252,7 +253,7 @@
 
 @media (max-width: 600px) {
   .gallery {
-    min-height: 240px;
+    min-height: 0;
   }
   .mainWrap {
     transform: translate(-50%, -50%);
@@ -307,7 +308,7 @@
 
 @media (max-width: 400px) {
   .gallery {
-    min-height: 200px;
+    min-height: 0;
   }
   .thumb {
     width: 38px;

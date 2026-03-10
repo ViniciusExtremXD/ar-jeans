@@ -46,11 +46,19 @@
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .showcase {
-    padding: 40px 16px 60px;
+    padding: 32px 16px 60px;
+  }
+
+  .header {
+    margin-bottom: 24px;
   }
 
   .title {
-    font-size: 34px;
+    font-size: 30px;
+  }
+
+  .subtitle {
+    font-size: 13px;
   }
 
   .grid {

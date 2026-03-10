@@ -228,29 +228,93 @@
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .gallery {
-    min-height: 380px;
+    min-height: 280px;
+  }
+
+  .shapeTop {
+    width: 80px;
+    height: 80px;
+  }
+
+  .shapeBottom {
+    width: 50px;
+    height: 50px;
+  }
+
+  .shapeRing {
+    width: 80px;
+    height: 80px;
+    border-width: 10px;
+    bottom: 60px;
+    left: -20px;
   }
 }
 
 @media (max-width: 600px) {
   .gallery {
-    min-height: 320px;
+    min-height: 240px;
   }
   .mainWrap {
     transform: translate(-50%, -50%);
+    height: 88%;
   }
   .thumbs {
-    right: 6px;
-    gap: 4px;
+    right: 4px;
+    gap: 3px;
   }
   .thumb {
-    width: 56px;
-    height: 66px;
+    width: 44px;
+    height: 52px;
+    border-radius: 6px;
+  }
+  .thumbLabel {
+    font-size: 6px;
+    padding: 1.5px;
+  }
+  .logo {
+    top: 10px;
+    right: 10px;
+    padding: 4px 7px;
+    border-radius: 6px;
+  }
+  .logoAR {
+    font-size: 18px;
+  }
+  .logoSub {
+    font-size: 5.5px;
+  }
+  .badgeWrap {
+    bottom: 50px;
+    left: 8px;
+    gap: 3px;
+  }
+  .pageNumber {
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+    bottom: 8px;
+    right: 10px;
+  }
+  .catalogLabel {
+    bottom: 10px;
+    font-size: 7px;
+    padding-left: 30px;
+  }
+  .shapeDots {
+    display: none;
   }
 }
 
 @media (max-width: 400px) {
   .gallery {
-    min-height: 280px;
+    min-height: 200px;
+  }
+  .thumb {
+    width: 38px;
+    height: 44px;
+  }
+  .shapeTop {
+    width: 60px;
+    height: 60px;
   }
 }

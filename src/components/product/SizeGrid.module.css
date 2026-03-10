@@ -41,6 +41,9 @@
 
 @media (max-width: 600px) {
   .grid { gap: 3px; }
+  .tabs { gap: 4px; }
+  .tab { padding: 3px 8px; font-size: 8.5px; }
+  .tabDot { width: 6px; height: 6px; }
 }
 
 @media (max-width: 400px) {

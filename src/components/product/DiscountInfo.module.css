@@ -83,3 +83,47 @@
   border-radius: var(--radius-sm);
   padding: 6px 10px;
 }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .box {
+    padding: 8px 10px;
+    margin-bottom: 8px;
+  }
+
+  .row {
+    gap: 5px;
+  }
+
+  .card {
+    padding: 5px 4px;
+  }
+
+  .value {
+    font-size: 17px;
+  }
+
+  .label {
+    font-size: 7.5px;
+    letter-spacing: 0.02em;
+  }
+
+  .sub {
+    font-size: 7px;
+  }
+
+  .title {
+    font-size: 8px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 400px) {
+  .value {
+    font-size: 15px;
+  }
+
+  .label {
+    font-size: 7px;
+  }
+}

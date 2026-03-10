@@ -257,49 +257,55 @@
   }
   .mainWrap {
     transform: translate(-50%, -50%);
-    height: 88%;
+    height: 90%;
   }
   .thumbs {
     right: 4px;
-    gap: 3px;
+    gap: 2px;
+    top: 50%;
+    transform: translateY(-50%);
   }
   .thumb {
-    width: 44px;
-    height: 52px;
-    border-radius: 6px;
+    width: 38px;
+    height: 44px;
+    border-radius: 5px;
+    border-width: 2px;
   }
   .thumbLabel {
-    font-size: 6px;
+    font-size: 5.5px;
     padding: 1.5px;
   }
+  /* Iter 2: Hide logo on mobile to reduce clutter */
   .logo {
-    top: 10px;
-    right: 10px;
-    padding: 4px 7px;
-    border-radius: 6px;
+    display: none;
   }
-  .logoAR {
-    font-size: 18px;
+  /* Iter 3: Hide shapeTop so close button is clearly visible */
+  .shapeTop {
+    display: none;
   }
-  .logoSub {
-    font-size: 5.5px;
+  .shapeBottom {
+    width: 40px;
+    height: 40px;
+  }
+  .shapeRing {
+    width: 60px;
+    height: 60px;
+    border-width: 8px;
+    bottom: 40px;
+    left: -15px;
   }
   .badgeWrap {
-    bottom: 50px;
+    bottom: auto;
+    top: 10px;
+    top: max(10px, env(safe-area-inset-top, 10px));
     left: 8px;
     gap: 3px;
   }
   .pageNumber {
-    width: 28px;
-    height: 28px;
-    font-size: 10px;
-    bottom: 8px;
-    right: 10px;
+    display: none;
   }
   .catalogLabel {
-    bottom: 10px;
-    font-size: 7px;
-    padding-left: 30px;
+    display: none;
   }
   .shapeDots {
     display: none;
@@ -311,11 +317,11 @@
     min-height: 0;
   }
   .thumb {
-    width: 38px;
-    height: 44px;
+    width: 34px;
+    height: 40px;
+    border-radius: 4px;
   }
-  .shapeTop {
-    width: 60px;
-    height: 60px;
+  .thumbLabel {
+    display: none;
   }
 }

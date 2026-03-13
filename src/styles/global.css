@@ -92,11 +92,22 @@ a {
 
 @media (max-width: 640px) {
   html {
-    scroll-padding-top: 74px;
+    scroll-padding-top: 70px;
   }
 
   section[id],
   [id='tamanhos'] {
-    scroll-margin-top: 74px;
+    scroll-margin-top: 70px;
+  }
+}
+
+@media (max-width: 430px) {
+  html {
+    scroll-padding-top: 66px;
+  }
+
+  section[id],
+  [id='tamanhos'] {
+    scroll-margin-top: 66px;
   }
 }

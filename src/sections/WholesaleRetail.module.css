@@ -1,6 +1,6 @@
 .section {
   background: var(--gray-100);
-  padding: 58px 20px;
+  padding: 32px 20px 20px;
   scroll-margin-top: 58px;
 }
 
@@ -9,7 +9,64 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 38px;
+  gap: 14px;
+}
+
+.trigger {
+  width: 100%;
+  border: 1px solid rgba(201, 168, 76, 0.28);
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.03), rgba(255, 255, 255, 0.75));
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow var(--ease-default), border-color var(--ease-default);
+}
+
+.trigger:hover {
+  border-color: rgba(201, 168, 76, 0.45);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.triggerCopy {
+  display: flex;
+  flex-direction: column;
+}
+
+.chevron {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-600);
+  font-size: 11px;
+  flex-shrink: 0;
+  transition: transform var(--ease-default), color var(--ease-default);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+  color: var(--gold-dark);
+}
+
+.expandWrap {
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.expandContent {
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
 }
 
 /* ── Header ── */
@@ -314,6 +371,15 @@
 }
 
 @media (max-width: 700px) {
+  .trigger {
+    padding: 14px;
+    align-items: flex-start;
+  }
+
+  .chevron {
+    margin-top: 3px;
+  }
+
   .cards {
     grid-template-columns: 1fr;
   }
@@ -327,17 +393,28 @@
   }
 
   .title {
-    font-size: 30px;
+    font-size: 26px;
   }
 
   .subtitle {
-    font-size: 14px;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .tag {
+    font-size: 9px;
+    margin-bottom: 6px;
+  }
+
+  .chevron {
+    width: 38px;
+    height: 38px;
   }
 }
 
 @media (max-width: 480px) {
   .section {
-    padding: 46px 16px;
+    padding: 18px 14px 10px;
   }
 
   .tiers {
@@ -345,10 +422,49 @@
   }
 
   .card {
-    padding: 20px;
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+
+  .cardSub,
+  .list li {
+    font-size: 12px;
+  }
+
+  .cardCta,
+  .cardCtaFeatured {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+  }
+
+  .progressiveTitle,
+  .sizesTitle {
+    font-size: 22px;
+  }
+
+  .progressiveSub,
+  .sizesNote {
+    font-size: 12px;
   }
 
   .sizeGroup {
-    padding: 14px;
+    padding: 12px;
+  }
+
+  .sizes {
+    gap: 6px;
+  }
+
+  .size {
+    min-width: 34px;
+    height: 34px;
+    font-size: 11px;
   }
 }

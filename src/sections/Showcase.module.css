@@ -100,28 +100,32 @@
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .showcase {
-    padding: 28px 16px 44px;
+    padding: 18px 14px 30px;
   }
 
   .header {
-    margin-bottom: 18px;
+    margin-bottom: 14px;
   }
 
   .title {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .subtitle {
-    font-size: 13px;
+    font-size: 12px;
+    line-height: 1.45;
+    max-width: 32ch;
+    margin-inline: auto;
   }
 
   .grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
   }
 
   .metaBar {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    gap: 8px;
   }
 
   .counter {

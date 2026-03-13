@@ -1,178 +1,120 @@
-.active {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 10px;
-  background: rgba(27, 122, 62, 0.07);
-  border: 1px solid rgba(27, 122, 62, 0.2);
-  border-radius: var(--radius-full);
-}
-
-.check {
-  font-size: 10px;
-  color: var(--green-disc);
-  font-weight: 700;
-}
-
-.pct {
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--green-disc);
-  letter-spacing: 0.04em;
-}
-
-.tierLabel {
-  font-size: 10px;
-  color: var(--gray-600);
-}
-
-.hint {
-  font-size: 11px;
-  color: var(--gold-dark);
-  font-style: italic;
-  margin: 0;
-}
-
-/* removed: .title .row .card .active .past .value .label .sub .warning */
-
-.title {
-  font-size: 9px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--green-disc);
-  margin-bottom: 7px;
+.panel {
+  background: linear-gradient(145deg, #e9f8ee 0%, #def2e4 100%);
+  border: 1px solid rgba(27, 122, 62, 0.24);
+  border-radius: var(--radius-md);
+  padding: 12px;
   display: flex;
-  align-items: center;
-  gap: 6px;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.title::before {
-  content: '🏷️';
-  font-size: 11px;
-}
-
-.row {
+.header {
   display: flex;
+  align-items: baseline;
+  justify-content: space-between;
   gap: 8px;
 }
 
-.card {
-  flex: 1;
-  background: var(--white);
-  border: 1px solid rgba(27, 122, 62, 0.2);
-  border-radius: var(--radius-md);
-  padding: 7px 10px;
-  text-align: center;
-  transition: all var(--ease-default);
-  opacity: 0.6;
-}
-
-.card.active {
-  opacity: 1;
-  border-color: var(--green-disc);
-  background: #e0f5e9;
-  box-shadow: 0 2px 8px rgba(27, 122, 62, 0.15);
-}
-
-.card.past {
-  opacity: 0.5;
-}
-
-.value {
-  font-family: var(--font-display);
-  font-size: 22px;
-  color: var(--green-disc);
-  letter-spacing: 0.03em;
-  line-height: 1;
-}
-
-.label {
-  font-size: 9px;
-  font-weight: 600;
-  color: var(--gray-600);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-top: 2px;
-}
-
-.sub {
-  font-size: 8px;
-  color: var(--gray-400);
-  font-style: italic;
-  margin-top: 1px;
-}
-
-.warning {
-  margin-top: 8px;
+.title {
   font-size: 10px;
-  color: var(--red-warn);
-  background: var(--red-light);
-  border: 1px solid rgba(211, 47, 47, 0.2);
-  border-radius: var(--radius-sm);
-  padding: 6px 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--green-disc);
 }
 
-/* ── Responsive ── */
+.currentPieces {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(27, 122, 62, 0.85);
+}
+
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.tier {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(27, 122, 62, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  opacity: 0.62;
+  transition: all var(--ease-default);
+}
+
+.tier.active {
+  opacity: 1;
+  border-color: rgba(27, 122, 62, 0.45);
+  box-shadow: 0 4px 12px rgba(27, 122, 62, 0.18);
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+.tier.reached {
+  opacity: 0.82;
+}
+
+.tierLabel {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gray-600);
+}
+
+.tierValue {
+  font-size: 13px;
+  line-height: 1.1;
+  color: var(--green-disc);
+}
+
+.tierRange {
+  font-size: 9px;
+  color: var(--gray-500);
+}
+
+.helper {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--green-disc);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px dashed rgba(27, 122, 62, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+}
+
 @media (max-width: 600px) {
-  .box {
-    padding: 7px 8px;
-    margin-bottom: 0;
-    border-radius: 8px;
+  .panel {
+    padding: 10px;
   }
 
-  .row {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 4px;
   }
 
-  .card {
-    padding: 4px 3px;
-    border-radius: 6px;
+  .tiers {
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
 
-  .value {
-    font-size: 15px;
+  .tier {
+    padding: 7px;
   }
 
-  .label {
-    font-size: 7px;
-    letter-spacing: 0.01em;
+  .tierValue {
+    font-size: 12px;
   }
 
-  .sub {
-    font-size: 6.5px;
-  }
-
-  .title {
-    font-size: 7.5px;
-    margin-bottom: 4px;
-  }
-
-  .title::before {
-    font-size: 9px;
-  }
-}
-
-@media (max-width: 400px) {
-  .value {
-    font-size: 13px;
-  }
-
-  .label {
-    font-size: 6.5px;
-  }
-
-  .sub {
-    display: none;
-  }
-}
-
-@media (max-width: 400px) {
-  .value {
-    font-size: 15px;
-  }
-
-  .label {
-    font-size: 7px;
+  .helper {
+    font-size: 10px;
+    line-height: 1.4;
   }
 }

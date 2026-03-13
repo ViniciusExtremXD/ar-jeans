@@ -122,6 +122,14 @@
   margin-bottom: 12px;
 }
 
+.hoursLine {
+  display: block;
+}
+
+.hoursLine + .hoursLine {
+  margin-top: 2px;
+}
+
 .mapsLink {
   font-size: 13px;
   font-weight: 600;
@@ -168,11 +176,20 @@
 
 @media (max-width: 500px) {
   .footer {
-    padding: 48px 16px 0;
+    padding: 34px 14px 0;
   }
 
   .main {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 20px;
+    padding-bottom: 28px;
+  }
+
+  .navTitle {
+    margin-bottom: 10px;
+  }
+
+  .bottom {
+    padding: 14px 0 calc(12px + env(safe-area-inset-bottom, 0px));
   }
 }

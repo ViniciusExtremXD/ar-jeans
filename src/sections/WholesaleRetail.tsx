@@ -1,8 +1,34 @@
+import { useEffect, useRef, useState } from 'react';
 import { BUSINESS_RULES, COMPANY_INFO } from '@/data/business-rules';
 import { DISCOUNT_TIERS } from '@/data/business-rules';
 import styles from './WholesaleRetail.module.css';
 
 export function WholesaleRetail() {
+  const [expanded, setExpanded] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentHeight, setContentHeight] = useState(0);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      setContentHeight(contentRef.current?.scrollHeight ?? 0);
+    };
+
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, []);
+
+  useEffect(() => {
+    if (!expanded) return;
+    setContentHeight(contentRef.current?.scrollHeight ?? 0);
+  }, [expanded]);
+
+  useEffect(() => {
+    const handleOpen = () => setExpanded(true);
+    window.addEventListener('ar:open-wholesale', handleOpen as EventListener);
+    return () => window.removeEventListener('ar:open-wholesale', handleOpen as EventListener);
+  }, []);
+
   const waRetail = `https://wa.me/${COMPANY_INFO.whatsappRaw}?text=${encodeURIComponent(
     'Olá! Gostaria de fazer um pedido no varejo.'
   )}`;
@@ -13,18 +39,33 @@ export function WholesaleRetail() {
   return (
     <section id="atacado-varejo" className={styles.section}>
       <div className={styles.container}>
-        {/* Header */}
-        <div className={styles.header}>
-          <span className={styles.tag}>MODALIDADES DE COMPRA</span>
-          <h2 className={styles.title}>Atacado & Varejo</h2>
-          <p className={styles.subtitle}>
-            Atendemos tanto consumidores finais quanto lojistas e revendedores.
-            O pedido é sempre finalizado pelo WhatsApp — simples e direto.
-          </p>
-        </div>
+        <button
+          type="button"
+          className={styles.trigger}
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+          aria-controls="purchase-modes-content"
+        >
+          <div className={styles.triggerCopy}>
+            <span className={styles.tag}>Modalidades de Compra</span>
+            <h2 className={styles.title}>Atacado & Varejo</h2>
+            <p className={styles.subtitle}>Entenda como funciona a compra e o desconto progressivo</p>
+          </div>
+          <span className={`${styles.chevron} ${expanded ? styles.chevronOpen : ''}`} aria-hidden="true">
+            ▼
+          </span>
+        </button>
 
-        {/* Cards comparativos */}
-        <div className={styles.cards}>
+        <div
+          id="purchase-modes-content"
+          className={styles.expandWrap}
+          style={{ maxHeight: expanded ? `${contentHeight}px` : '0px' }}
+          aria-hidden={!expanded}
+        >
+          <div ref={contentRef} className={styles.expandContent}>
+
+          {/* Cards comparativos */}
+          <div className={styles.cards}>
           {/* Varejo */}
           <div className={styles.card}>
             <div className={styles.cardHeader}>
@@ -67,10 +108,10 @@ export function WholesaleRetail() {
               Quero Comprar no Atacado
             </a>
           </div>
-        </div>
+          </div>
 
-        {/* Tabela de desconto progressivo */}
-        <div className={styles.progressiveBlock}>
+          {/* Tabela de desconto progressivo */}
+          <div className={styles.progressiveBlock}>
           <h3 className={styles.progressiveTitle}>Desconto Progressivo</h3>
           <p className={styles.progressiveSub}>
             Quanto mais peças, maior o desconto — aplicado automaticamente no pedido.
@@ -91,10 +132,10 @@ export function WholesaleRetail() {
               </div>
             ))}
           </div>
-        </div>
+          </div>
 
-        {/* Tamanhos */}
-        <div id="tamanhos" className={styles.sizesSection}>
+          {/* Tamanhos */}
+          <div id="tamanhos" className={styles.sizesSection}>
           <span className={styles.tag}>GRADE DE MEDIDAS</span>
           <div className={styles.sizesBlock}>
           <h3 className={styles.sizesTitle}>Tamanhos Disponíveis</h3>
@@ -135,6 +176,8 @@ export function WholesaleRetail() {
           <p className={styles.sizesNote}>
             * Disponibilidade por tamanho varia por modelo. Consulte via WhatsApp para grade completa.
           </p>
+          </div>
+          </div>
           </div>
         </div>
       </div>

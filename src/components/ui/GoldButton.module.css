@@ -56,7 +56,8 @@
 
 @media (max-width: 600px) {
   .btn {
-    padding: 8px 12px;
-    font-size: 10px;
+    min-height: 42px;
+    padding: 10px 14px;
+    font-size: 11px;
   }
 }

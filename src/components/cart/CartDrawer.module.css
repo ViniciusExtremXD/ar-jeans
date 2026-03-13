@@ -181,4 +181,48 @@
   .drawer {
     width: 100vw;
   }
+
+  .header {
+    padding: 14px 14px 12px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .subtitle {
+    font-size: 10px;
+  }
+
+  .closeBtn {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+
+  .body {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .itemList {
+    gap: 8px;
+  }
+
+  .clearBtn {
+    min-height: 34px;
+  }
+
+  .footer {
+    padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px));
+    gap: 10px;
+  }
+
+  .totalRow {
+    font-size: 11px;
+  }
+
+  .totalFinal {
+    font-size: 22px;
+  }
 }

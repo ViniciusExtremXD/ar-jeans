@@ -14,6 +14,12 @@
   align-items: flex-start;
 }
 
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .type {
   font-size: 8px;
   font-weight: 700;
@@ -37,7 +43,16 @@
   font-size: 10px;
   font-weight: 600;
   color: var(--gray-600);
+  margin-top: 4px;
+}
+
+.ref {
+  display: block;
+  font-size: 9px;
+  color: var(--gray-500);
+  letter-spacing: 0.05em;
   margin-top: 2px;
+  text-transform: uppercase;
 }
 
 .colorDot {
@@ -48,13 +63,13 @@
 }
 
 .removeBtn {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: var(--gray-100);
   border: 1px solid var(--gray-200);
   color: var(--gray-600);
-  font-size: 10px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,26 +78,116 @@
   flex-shrink: 0;
 }
 
+.editBtn {
+  height: 30px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--gray-200);
+  background: var(--gray-100);
+  color: var(--gray-700);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0 10px;
+  cursor: pointer;
+  transition: all var(--ease-default);
+}
+
+.editBtn:hover {
+  border-color: var(--gold);
+  color: var(--gold-dark);
+}
+
 .removeBtn:hover {
   background: var(--red-light);
   border-color: var(--red-warn);
   color: var(--red-warn);
 }
 
-.sizes {
+.variants {
   display: flex;
-  gap: 4px;
+  flex-direction: column;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
-.sizePill {
-  background: var(--gray-100);
+.variantRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
   border: 1px solid var(--gray-200);
-  border-radius: var(--radius-full);
-  padding: 2px 8px;
-  font-size: 9px;
-  font-weight: 600;
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  background: var(--gray-100);
+}
+
+.variantText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.variantSize {
+  font-size: 11px;
+  font-weight: 700;
   color: var(--gray-800);
+}
+
+.variantQty {
+  font-size: 10px;
+  color: var(--gray-600);
+}
+
+.variantControls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.qtyBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  color: var(--gray-700);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.qtyValue {
+  min-width: 22px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.removeSizeBtn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--gray-500);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--ease-default);
+}
+
+.removeSizeBtn:hover {
+  color: var(--gray-700);
+  border-color: var(--gray-300);
+  background: var(--gray-100);
+}
+
+.removeSizeBtn:focus-visible {
+  outline: 2px solid rgba(201, 168, 76, 0.35);
+  outline-offset: 2px;
 }
 
 .footer {
@@ -138,4 +243,70 @@
 
 .subtotal.discounted {
   color: var(--green-disc);
+}
+
+@media (max-width: 600px) {
+  .item {
+    padding: 10px;
+    gap: 7px;
+  }
+
+  .name {
+    font-size: 16px;
+    line-height: 1.05;
+  }
+
+  .type {
+    font-size: 7px;
+  }
+
+  .color {
+    font-size: 9px;
+  }
+
+  .ref {
+    font-size: 8px;
+  }
+
+  .variantRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 7px;
+  }
+
+  .variantControls {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .removeSizeBtn {
+    margin-left: auto;
+  }
+
+  .qtyBtn {
+    width: 34px;
+    height: 34px;
+    font-size: 17px;
+  }
+
+  .qtyValue {
+    min-width: 24px;
+    font-size: 12px;
+  }
+
+  .editBtn,
+  .removeBtn {
+    min-height: 34px;
+    min-width: 34px;
+  }
+
+  .removeSizeBtn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .subtotal {
+    font-size: 17px;
+  }
 }

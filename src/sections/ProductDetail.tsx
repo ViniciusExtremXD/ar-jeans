@@ -63,8 +63,15 @@ export function ProductDetail({ productId, onClose }: Props) {
 
     setAdded(true);
     resetSelection();
+
+    // Mobile UX: after adding, close modal and return to catalog context.
+    if (window.innerWidth <= 900) {
+      onClose();
+      return;
+    }
+
     setTimeout(() => setAdded(false), 2500);
-  }, [getItemsToAdd, addItem, product.id, totalPieces, resetSelection]);
+  }, [getItemsToAdd, addItem, product.id, totalPieces, resetSelection, onClose]);
 
   const selectedColorIds = Object.entries(selection.selectedColors)
     .filter(([, sel]) => sel)

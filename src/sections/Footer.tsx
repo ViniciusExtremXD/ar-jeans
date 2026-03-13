@@ -8,6 +8,9 @@ function scrollTo(anchor: string) {
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const [weekHours = '', saturdayHours = ''] = COMPANY_INFO.serviceHours
+    .split('·')
+    .map((part) => part.trim());
 
   return (
     <footer className={styles.footer}>
@@ -62,7 +65,10 @@ export function Footer() {
           <h4 className={styles.navTitle}>Endereço</h4>
           <p>{COMPANY_INFO.address}</p>
           <p>{COMPANY_INFO.city}</p>
-          <p className={styles.addressHours}>{COMPANY_INFO.serviceHours}</p>
+          <p className={styles.addressHours}>
+            <span className={styles.hoursLine}>{weekHours}</span>
+            <span className={styles.hoursLine}>{saturdayHours}</span>
+          </p>
           <a
             href={COMPANY_INFO.mapsUrl}
             target="_blank"

@@ -110,19 +110,34 @@
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .section {
-    padding: 44px 16px;
+    padding: 34px 14px;
   }
 
   .title {
-    font-size: 30px;
+    font-size: 26px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+    line-height: 1.5;
   }
 
   .question {
-    font-size: 13px;
-    padding: 13px 14px;
+    font-size: 12px;
+    padding: 12px;
+    min-height: 46px;
+  }
+
+  .arrow {
+    font-size: 22px;
   }
 
   .answer {
-    padding: 0 14px 13px;
+    padding: 0 12px 12px;
+  }
+
+  .answer p {
+    font-size: 12px;
+    line-height: 1.62;
   }
 }

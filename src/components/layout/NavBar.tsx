@@ -38,6 +38,11 @@ export function NavBar() {
 
   const handleLink = useCallback((anchor: string) => {
     setMenuOpen(false);
+
+    if (anchor === 'atacado-varejo' || anchor === 'tamanhos') {
+      window.dispatchEvent(new CustomEvent('ar:open-wholesale'));
+    }
+
     scrollToSection(anchor);
   }, []);
 

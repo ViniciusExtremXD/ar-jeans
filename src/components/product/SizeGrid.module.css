@@ -40,14 +40,14 @@
 }
 
 @media (max-width: 600px) {
-  .grid { gap: 2px; margin-bottom: 4px; }
-  .tabs { gap: 3px; margin-bottom: 5px; }
-  .tab { padding: 3px 7px; font-size: 8px; }
+  .grid { grid-template-columns: repeat(3, 1fr); gap: 4px; margin-bottom: 6px; }
+  .tabs { gap: 4px; margin-bottom: 6px; flex-wrap: wrap; }
+  .tab { min-height: 32px; padding: 5px 9px; font-size: 8.5px; }
   .tabDot { width: 6px; height: 6px; }
 }
 
 @media (max-width: 400px) {
-  .grid { gap: 2px; margin-bottom: 3px; }
-  .tabs { gap: 2px; margin-bottom: 4px; }
-  .tab { padding: 2px 6px; font-size: 7.5px; }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 4px; margin-bottom: 4px; }
+  .tabs { gap: 3px; margin-bottom: 5px; }
+  .tab { min-height: 30px; padding: 4px 7px; font-size: 8px; }
 }

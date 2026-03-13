@@ -2,6 +2,14 @@ import { COMPANY_INFO } from '@/data/business-rules';
 import styles from './About.module.css';
 
 export function About() {
+  const [weekHours = '', saturdayHours = ''] = COMPANY_INFO.serviceHours
+    .split('·')
+    .map((part) => part.trim());
+  const [addressLine1 = '', ...addressRest] = COMPANY_INFO.addressFull
+    .split('–')
+    .map((part) => part.trim());
+  const addressLine2 = addressRest.join(' – ');
+
   return (
     <section id="sobre" className={styles.section}>
       <div className={styles.container}>
@@ -49,7 +57,10 @@ export function About() {
             </div>
             <div className={styles.infoRow}>
               <span className={styles.infoLabel}>Endereço</span>
-              <span className={styles.infoValue}>{COMPANY_INFO.addressFull}</span>
+              <span className={styles.infoValue}>
+                <span className={styles.infoLine}>{addressLine1}</span>
+                {addressLine2 && <span className={styles.infoLine}>{addressLine2}</span>}
+              </span>
             </div>
             <div className={styles.infoRow}>
               <span className={styles.infoLabel}>WhatsApp</span>
@@ -75,7 +86,10 @@ export function About() {
             </div>
             <div className={styles.infoRow}>
               <span className={styles.infoLabel}>Atendimento</span>
-              <span className={styles.infoValue}>{COMPANY_INFO.serviceHours}</span>
+              <span className={styles.infoValue}>
+                <span className={styles.hoursLine}>{weekHours}</span>
+                <span className={styles.hoursLine}>{saturdayHours}</span>
+              </span>
             </div>
           </div>
 

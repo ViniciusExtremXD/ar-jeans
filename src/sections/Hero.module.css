@@ -256,22 +256,31 @@
 @media (max-width: 600px) {
   .hero {
     min-height: auto;
-    padding: 74px 16px 26px;
+    padding: 64px 16px 18px;
+  }
+
+  .content {
+    gap: 14px;
+    max-width: 100%;
   }
 
   .title {
-    font-size: 32px;
+    font-size: 29px;
+    line-height: 0.96;
   }
 
   .subtitle {
-    font-size: 13px;
+    font-size: 12px;
+    line-height: 1.5;
+    max-width: 34ch;
   }
 
   .highlights {
     gap: 6px;
-    padding: 9px 10px;
+    padding: 8px 10px;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
   }
 
   .highlight strong {
@@ -284,17 +293,19 @@
 
   .ctaPrimary {
     width: 100%;
-    max-width: 320px;
-    padding: 11px 24px;
+    max-width: 100%;
+    padding: 12px 20px;
     font-size: 15px;
+    min-height: 44px;
   }
 
   .ctaInsta {
     width: 100%;
-    max-width: 320px;
+    max-width: 100%;
     justify-content: center;
     font-size: 12px;
     padding: 10px 14px;
+    min-height: 42px;
   }
 
   .trustStrip {
@@ -318,5 +329,25 @@
   .tag {
     font-size: 9px;
     padding: 4px 12px;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero {
+    padding-top: 60px;
+    padding-bottom: 14px;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .highlights {
+    padding: 7px 8px;
+    gap: 4px;
+  }
+
+  .highlight strong {
+    font-size: 14px;
   }
 }

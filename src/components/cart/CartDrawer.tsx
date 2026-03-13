@@ -9,10 +9,11 @@ import styles from './CartDrawer.module.css';
 interface Props {
   open: boolean;
   onClose: () => void;
+  onEditProduct: (productId: string) => void;
 }
 
-export function CartDrawer({ open, onClose }: Props) {
-  const { computed, removeItem, clearCart } = useCartContext();
+export function CartDrawer({ open, onClose, onEditProduct }: Props) {
+  const { computed, removeItem, updateItemSizes, clearCart } = useCartContext();
   const { items, totalPieces, subtotalBruto, totalDiscount, totalFinal, orderType } = computed;
 
   const handleSendWhatsApp = () => {
@@ -67,6 +68,8 @@ export function CartDrawer({ open, onClose }: Props) {
                     key={item.id}
                     item={item}
                     onRemove={() => handleRemove(item.id)}
+                    onEdit={() => onEditProduct(item.productId)}
+                    onUpdateSizes={(sizes) => updateItemSizes(item.id, sizes)}
                   />
                 ))}
               </div>

@@ -4,7 +4,6 @@ import { NavBar } from '@/components/layout/NavBar';
 import { Hero } from '@/sections/Hero';
 import { WholesaleRetail } from '@/sections/WholesaleRetail';
 import { About } from '@/sections/About';
-import { Trust } from '@/sections/Trust';
 import { Showcase } from '@/sections/Showcase';
 import { FAQ } from '@/sections/FAQ';
 import { Location } from '@/sections/Location';
@@ -24,19 +23,22 @@ function AppContent() {
     scrollToSection('catalogo');
   }, []);
 
+  const openProductFromCart = useCallback((productId: string) => {
+    setIsCartOpen(false);
+    setSelectedProductId(productId);
+  }, []);
+
   return (
     <div className={styles.app}>
       <NavBar />
 
       <Hero onScrollToShowcase={scrollToShowcase} />
 
+      <WholesaleRetail />
+
       <div>
         <Showcase onProductSelect={setSelectedProductId} />
       </div>
-
-      <WholesaleRetail />
-
-      <Trust />
 
       <About />
 
@@ -60,6 +62,7 @@ function AppContent() {
       <CartDrawer
         open={isCartOpen}
         onClose={() => setIsCartOpen(false)}
+        onEditProduct={openProductFromCart}
       />
 
       {/* Cart Floating Button */}

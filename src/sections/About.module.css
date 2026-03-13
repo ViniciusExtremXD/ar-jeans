@@ -1,5 +1,5 @@
 .section {
-  background: var(--white);
+  background: var(--black);
   padding: 58px 20px;
   scroll-margin-top: 58px;
 }
@@ -27,7 +27,7 @@
 .title {
   font-family: var(--font-display);
   font-size: 42px;
-  color: var(--black);
+  color: var(--white);
   letter-spacing: 0.02em;
   text-transform: uppercase;
   margin-bottom: 12px;
@@ -36,14 +36,14 @@
 .lead {
   font-size: 16px;
   font-weight: 500;
-  color: var(--gray-800);
+  color: var(--gray-200);
   line-height: 1.7;
   margin-bottom: 14px;
 }
 
 .body {
   font-size: 14px;
-  color: var(--gray-600);
+  color: var(--gray-400);
   line-height: 1.75;
   margin-bottom: 12px;
 }
@@ -61,9 +61,9 @@
   align-items: flex-start;
   gap: 12px;
   padding: 14px 16px;
-  background: var(--gray-50);
+  background: rgba(255, 255, 255, 0.04);
   border-radius: var(--radius-md);
-  border: 1px solid var(--gray-200);
+  border: 1px solid rgba(201, 168, 76, 0.14);
 }
 
 .pillarIcon {
@@ -75,13 +75,13 @@
   display: block;
   font-size: 13px;
   font-weight: 700;
-  color: var(--black);
+  color: var(--white);
   margin-bottom: 2px;
 }
 
 .pillar p {
   font-size: 12px;
-  color: var(--gray-600);
+  color: var(--gray-400);
 }
 
 /* ── Aside ── */
@@ -92,8 +92,8 @@
 }
 
 .infoCard {
-  background: var(--gray-50);
-  border: 1px solid var(--gray-200);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(201, 168, 76, 0.14);
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
@@ -103,7 +103,7 @@
   flex-direction: column;
   gap: 2px;
   padding: 14px 18px;
-  border-bottom: 1px solid var(--gray-200);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .infoRow:last-child {
@@ -115,18 +115,35 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--gray-400);
+  color: var(--gray-300);
 }
 
 .infoValue {
   font-size: 13px;
-  color: var(--gray-800);
+  color: var(--white);
   font-weight: 500;
+  line-height: 1.45;
+}
+
+.infoLine {
+  display: block;
+}
+
+.infoLine + .infoLine {
+  margin-top: 2px;
+}
+
+.hoursLine {
+  display: block;
+}
+
+.hoursLine + .hoursLine {
+  margin-top: 2px;
 }
 
 .infoLink {
   font-size: 13px;
-  color: var(--gold-dark);
+  color: var(--gold);
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s;
@@ -196,10 +213,36 @@
 
 @media (max-width: 600px) {
   .section {
-    padding: 46px 16px;
+    padding: 34px 14px;
   }
 
   .title {
-    font-size: 32px;
+    font-size: 28px;
+  }
+
+  .lead {
+    font-size: 14px;
+    line-height: 1.58;
+    margin-bottom: 10px;
+  }
+
+  .body {
+    font-size: 13px;
+    line-height: 1.62;
+    margin-bottom: 8px;
+  }
+
+  .pillars {
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .pillar {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .infoRow {
+    padding: 12px 14px;
   }
 }

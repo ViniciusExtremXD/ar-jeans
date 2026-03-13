@@ -11,7 +11,7 @@ export function scrollToSection(sectionId: string, options?: ScrollOptions): voi
   const target = document.getElementById(sectionId);
   if (!target) return;
 
-  const defaultExtraOffset = window.innerWidth <= 640 ? 10 : 14;
+  const defaultExtraOffset = window.innerWidth <= 640 ? 8 : 14;
   const extraOffset = options?.extraOffset ?? defaultExtraOffset;
   const targetTop = target.getBoundingClientRect().top + window.scrollY;
   const finalTop = Math.max(targetTop - getHeaderHeight() - extraOffset, 0);

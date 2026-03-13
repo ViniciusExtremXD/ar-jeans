@@ -2,6 +2,10 @@ import { COMPANY_INFO } from '@/data/business-rules';
 import styles from './Location.module.css';
 
 export function Location() {
+  const [weekdaysHours = '', saturdayHours = ''] = COMPANY_INFO.serviceHours
+    .split('·')
+    .map((part) => part.trim());
+
   return (
     <section id="localizacao" className={styles.section}>
       <div className={styles.container}>
@@ -9,7 +13,10 @@ export function Location() {
           <span className={styles.tag}>ONDE ESTAMOS</span>
           <h2 className={styles.title}>Nossa Loja</h2>
           <p className={styles.address}>{COMPANY_INFO.addressFull}</p>
-          <p className={styles.hours}>{COMPANY_INFO.serviceHours}</p>
+          <p className={styles.hours}>
+            <span className={styles.hoursLine}>{weekdaysHours}</span>
+            <span className={styles.hoursLine}>{saturdayHours}</span>
+          </p>
 
           <div className={styles.actions}>
             <a
@@ -33,10 +40,8 @@ export function Location() {
           </div>
 
           <div className={styles.note}>
-            <p>
-              💡 Atendemos presencialmente na loja e remotamente pelo WhatsApp.
-              Para atacado, recomendamos agendar visita pelo WhatsApp com antecedência.
-            </p>
+            <p>💡 Atendemos presencialmente na loja e remotamente pelo WhatsApp.</p>
+            <p>Para atacado, recomendamos agendar visita pelo WhatsApp com antecedência.</p>
           </div>
         </div>
 

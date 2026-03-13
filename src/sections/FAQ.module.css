@@ -1,0 +1,128 @@
+.section {
+  background: var(--gray-50);
+  padding: 80px 20px;
+  scroll-margin-top: 58px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 40px;
+  color: var(--black);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
+/* ── Accordion ── */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.itemOpen {
+  border-color: var(--gold);
+}
+
+.question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-800);
+  transition: color 0.2s;
+  line-height: 1.4;
+}
+
+.itemOpen .question {
+  color: var(--black);
+}
+
+.question:hover {
+  color: var(--black);
+}
+
+.arrow {
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--gold);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.answer {
+  padding: 0 20px 18px;
+  animation: fadeIn 0.2s ease;
+}
+
+.answer p {
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.75;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .section {
+    padding: 60px 16px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  .question {
+    font-size: 13px;
+    padding: 14px 16px;
+  }
+
+  .answer {
+    padding: 0 16px 14px;
+  }
+}

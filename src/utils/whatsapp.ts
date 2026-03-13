@@ -1,5 +1,6 @@
 import type { CartComputed } from '@/types/product';
 import { BUSINESS_RULES } from '@/data/business-rules';
+import { COMPANY_INFO } from '@/data/business-rules';
 import { formatNumber } from './format';
 
 /**
@@ -70,12 +71,16 @@ export function buildWhatsAppMessage(cart: CartComputed): string {
   }
   lines.push('Aguardo confirmação! 🙏');
 
+  lines.push('');
+  lines.push(`📍 ${COMPANY_INFO.addressFull}`);
+  lines.push(`🔗 instagram.com/${COMPANY_INFO.instagram}`);
+
   return lines.join('\n');
 }
 
 /** Abre WhatsApp com a mensagem pré-preenchida */
 export function sendToWhatsApp(message: string): void {
   const encoded = encodeURIComponent(message);
-  const url = `https://api.whatsapp.com/send?phone=${BUSINESS_RULES.whatsappNumber}&text=${encoded}`;
+  const url = `https://wa.me/${COMPANY_INFO.whatsappRaw}?text=${encoded}`;
   window.open(url, '_blank', 'noopener,noreferrer');
 }

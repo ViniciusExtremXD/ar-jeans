@@ -1,0 +1,205 @@
+.section {
+  background: var(--white);
+  padding: 80px 20px;
+  scroll-margin-top: 58px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 60px;
+  align-items: start;
+}
+
+/* ── Text ── */
+.tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 42px;
+  color: var(--black);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.lead {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gray-800);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.body {
+  font-size: 14px;
+  color: var(--gray-600);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+/* ── Pillars ── */
+.pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.pillar {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--gray-50);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-200);
+}
+
+.pillarIcon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.pillar strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 2px;
+}
+
+.pillar p {
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+/* ── Aside ── */
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.infoCard {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.infoRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.infoRow:last-child {
+  border-bottom: none;
+}
+
+.infoLabel {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray-400);
+}
+
+.infoValue {
+  font-size: 13px;
+  color: var(--gray-800);
+  font-weight: 500;
+}
+
+.infoLink {
+  font-size: 13px;
+  color: var(--gold-dark);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.infoLink:hover {
+  color: var(--gold);
+}
+
+/* ── Instagram card ── */
+.instaCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: #fff;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.instaCard:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+}
+
+.instaIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.instaCard strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.instaCard p {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.instaArrow {
+  font-size: 18px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .aside {
+    order: -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 60px 16px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+}

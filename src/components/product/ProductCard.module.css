@@ -48,6 +48,32 @@
   gap: 4px;
 }
 
+.badgeNew {
+  display: inline-flex;
+  align-items: center;
+  background: var(--green-disc);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.badgeFeatured {
+  display: inline-flex;
+  align-items: center;
+  background: var(--gold);
+  color: var(--black);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
 .info {
   padding: 14px 16px 16px;
   display: flex;
@@ -56,12 +82,30 @@
   flex: 1;
 }
 
+.typeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
 .type {
   font-size: 9px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--gold);
+}
+
+.audience {
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--blue-jeans);
+  background: var(--blue-light);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
 }
 
 .name {
@@ -128,4 +172,22 @@
 
 .card:hover .cta {
   color: var(--gold-dark);
+}
+
+.commercial {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.commercialTag {
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gray-600);
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
 }

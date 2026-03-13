@@ -1,0 +1,59 @@
+.float {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #25D366;
+  color: #fff;
+  border-radius: var(--radius-full);
+  padding: 12px 20px 12px 14px;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.float:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.45);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.label {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .float {
+    bottom: 72px;
+    right: 16px;
+    padding: 12px 14px;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .float {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}

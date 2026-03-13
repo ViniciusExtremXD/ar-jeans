@@ -1,6 +1,28 @@
 import type { BusinessRules, DiscountTier, OrderType } from '@/types/product';
 
 // ══════════════════════════════════════════════
+// Dados Institucionais da Empresa
+// ══════════════════════════════════════════════
+export const COMPANY_INFO = {
+  name: 'AR Jeans',
+  cnpj: '08.159.192/0001-95',
+  address: 'Rua Xavantes, 719 – Loja 10',
+  city: 'São Paulo – SP, 03027-900',
+  addressFull: 'Rua Xavantes, 719 – Loja 10, São Paulo – SP, CEP 03027-900',
+  whatsapp: '+55 11 98485-0206',
+  whatsappRaw: '5511984850206',
+  instagram: 'arjeans_oficial',
+  instagramUrl: 'https://instagram.com/arjeans_oficial',
+  mapsUrl:
+    'https://www.google.com/maps/search/?api=1&query=Rua+Xavantes+719+Loja+10+São+Paulo+SP+03027900',
+  mapsEmbed:
+    'https://www.google.com/maps?q=Rua+Xavantes,+719,+S%C3%A3o+Paulo,+SP,+03027-900&output=embed',
+  exchangePolicy:
+    'Aceitamos trocas em até 7 dias corridos mediante apresentação da nota fiscal. Peças devem estar sem uso e com etiquetas originais.',
+  serviceHours: 'Seg–Sex: 9h–18h · Sáb: 9h–13h',
+} as const;
+
+// ══════════════════════════════════════════════
 // Faixas de Desconto Progressivo
 // ══════════════════════════════════════════════
 // Regra centralizada — edite apenas aqui para
@@ -52,7 +74,7 @@ export const DISCOUNT_TIERS: DiscountTier[] = [
 ];
 
 export const BUSINESS_RULES: BusinessRules = {
-  whatsappNumber: '5511982410303',
+  whatsappNumber: COMPANY_INFO.whatsappRaw,
   minOrderPieces: 1,
   discountTiers: DISCOUNT_TIERS,
   collectionName: 'Coleção Inverno 2025',

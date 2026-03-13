@@ -4,7 +4,9 @@ export interface CatalogFilterState {
   category: string;
   subcategory: string;
   type: string;
+  audience: string;
   query: string;
+  onlyNew: boolean;
 }
 
 export interface CatalogFilterOptions {
@@ -17,7 +19,9 @@ export const DEFAULT_CATALOG_FILTERS: CatalogFilterState = {
   category: 'all',
   subcategory: 'all',
   type: 'all',
+  audience: 'all',
   query: '',
+  onlyNew: false,
 };
 
 function uniqueSortedOptions(items: Array<{ value: string; label: string }>) {
@@ -58,6 +62,8 @@ export function filterCatalogProducts(products: Product[], filters: CatalogFilte
     if (filters.category !== 'all' && product.category !== filters.category) return false;
     if (filters.subcategory !== 'all' && product.subcategory !== filters.subcategory) return false;
     if (filters.type !== 'all' && product.type !== filters.type) return false;
+    if (filters.audience !== 'all' && product.audience !== filters.audience) return false;
+    if (filters.onlyNew && !product.isNew) return false;
 
     if (!query) return true;
 

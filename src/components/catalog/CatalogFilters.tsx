@@ -12,14 +12,25 @@ interface Props {
   selectedCategory: string;
   selectedSubcategory: string;
   selectedType: string;
+  selectedAudience: string;
+  onlyNew: boolean;
   query: string;
   totalResults: number;
   onCategoryChange: (value: string) => void;
   onSubcategoryChange: (value: string) => void;
   onTypeChange: (value: string) => void;
+  onAudienceChange: (value: string) => void;
+  onOnlyNewChange: (value: boolean) => void;
   onQueryChange: (value: string) => void;
   onClear: () => void;
 }
+
+const AUDIENCE_OPTIONS: Option[] = [
+  { value: 'feminino', label: 'Feminino' },
+  { value: 'masculino', label: 'Masculino' },
+  { value: 'infantil', label: 'Infantil' },
+  { value: 'unissex', label: 'Unissex' },
+];
 
 export function CatalogFilters({
   categories,
@@ -28,11 +39,15 @@ export function CatalogFilters({
   selectedCategory,
   selectedSubcategory,
   selectedType,
+  selectedAudience,
+  onlyNew,
   query,
   totalResults,
   onCategoryChange,
   onSubcategoryChange,
   onTypeChange,
+  onAudienceChange,
+  onOnlyNewChange,
   onQueryChange,
   onClear,
 }: Props) {
@@ -40,6 +55,8 @@ export function CatalogFilters({
     selectedCategory !== 'all' ||
     selectedSubcategory !== 'all' ||
     selectedType !== 'all' ||
+    selectedAudience !== 'all' ||
+    onlyNew ||
     query.trim().length > 0;
 
   return (
@@ -54,6 +71,34 @@ export function CatalogFilters({
             Limpar filtros
           </button>
         )}
+      </div>
+
+      {/* Audience quick-tabs */}
+      <div className={styles.audienceTabs}>
+        <button
+          type="button"
+          className={`${styles.audienceTab} ${selectedAudience === 'all' ? styles.audienceTabActive : ''}`}
+          onClick={() => onAudienceChange('all')}
+        >
+          Todos
+        </button>
+        {AUDIENCE_OPTIONS.map((opt) => (
+          <button
+            key={opt.value}
+            type="button"
+            className={`${styles.audienceTab} ${selectedAudience === opt.value ? styles.audienceTabActive : ''}`}
+            onClick={() => onAudienceChange(opt.value)}
+          >
+            {opt.label}
+          </button>
+        ))}
+        <button
+          type="button"
+          className={`${styles.audienceTab} ${onlyNew ? styles.audienceTabNew : ''}`}
+          onClick={() => onOnlyNewChange(!onlyNew)}
+        >
+          🆕 Novidades
+        </button>
       </div>
 
       <div className={styles.controls}>
@@ -99,7 +144,7 @@ export function CatalogFilters({
             type="search"
             value={query}
             onChange={(e) => onQueryChange(e.target.value)}
-            placeholder="Nome, referência, categoria..."
+            placeholder="Ex: calça flare, bermuda, jaqueta..."
           />
         </label>
       </div>

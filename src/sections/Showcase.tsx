@@ -95,7 +95,7 @@ export function Showcase({ onProductSelect }: Props) {
       : products.find((p) => p.category === filters.category)?.categoryLabel ?? 'Todos os produtos';
 
   return (
-    <section className={styles.showcase}>
+    <section id="catalogo" className={styles.showcase}>
       <div className={styles.header}>
         <span className={styles.tag}>COLEÇÃO</span>
         <h2 className={styles.title}>Catálogo Completo</h2>
@@ -111,11 +111,19 @@ export function Showcase({ onProductSelect }: Props) {
         selectedCategory={filters.category}
         selectedSubcategory={filters.subcategory}
         selectedType={filters.type}
+        selectedAudience={filters.audience}
+        onlyNew={filters.onlyNew}
         query={filters.query}
         totalResults={filteredProducts.length}
         onCategoryChange={changeCategory}
         onSubcategoryChange={changeSubcategory}
         onTypeChange={changeType}
+        onAudienceChange={(audience) => {
+          setFilters((prev) => ({ ...prev, audience }));
+        }}
+        onOnlyNewChange={(onlyNew) => {
+          setFilters((prev) => ({ ...prev, onlyNew }));
+        }}
         onQueryChange={(query) => setFilters((prev) => ({ ...prev, query }))}
         onClear={clearFilters}
       />

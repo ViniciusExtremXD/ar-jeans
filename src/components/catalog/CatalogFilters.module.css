@@ -53,6 +53,45 @@
   gap: 10px;
 }
 
+/* ── Audience tabs ── */
+.audienceTabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.audienceTab {
+  background: var(--gray-100);
+  border: 1.5px solid var(--gray-200);
+  color: var(--gray-600);
+  border-radius: var(--radius-full);
+  padding: 5px 14px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.audienceTab:hover {
+  border-color: var(--gold);
+  color: var(--gold-dark);
+}
+
+.audienceTabActive {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+}
+
+.audienceTabNew {
+  background: var(--green-light);
+  border-color: var(--green-disc);
+  color: var(--green-disc);
+}
+
 .control {
   display: flex;
   flex-direction: column;

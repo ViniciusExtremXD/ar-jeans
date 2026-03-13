@@ -29,6 +29,16 @@ export interface Product {
   collection: string;
   collectionLabel: string;
   reference: string;
+  sku: string;
+  catalogPage: number;
+  catalogPages?: number[];
+  category: string;
+  categoryLabel: string;
+  subcategory: string;
+  subcategoryLabel: string;
+  tags: string[];
+  audience: 'feminino' | 'masculino' | 'infantil' | 'unissex';
+  isNew: boolean;
   colors: ProductColor[];
   sizes: string[];
   basePrice: number;
@@ -37,7 +47,9 @@ export interface Product {
   badges: Badge[];
   featured: boolean;
   active: boolean;
+  sortOrder: number;
   order: number;
+  searchTokens: string[];
 }
 
 export interface Badge {
@@ -107,6 +119,13 @@ export interface OrderSelection {
 
 export type AnalyticsEvent =
   | 'product_view'
+  | 'catalog_filter_category'
+  | 'catalog_filter_subcategory'
+  | 'catalog_filter_type'
+  | 'catalog_filter_clear'
+  | 'catalog_search'
+  | 'catalog_product_click'
+  | 'catalog_product_open_after_filter'
   | 'color_select'
   | 'size_select'
   | 'quantity_change'

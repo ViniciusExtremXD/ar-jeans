@@ -36,6 +36,10 @@ export function ProductCard({ product, onClick }: Props) {
         <span className={styles.type}>{product.typeLabel}</span>
         <h3 className={styles.name}>{product.name}</h3>
         <p className={styles.desc}>{product.shortDescription}</p>
+        <div className={styles.catalogMeta}>
+          <span>{product.categoryLabel}</span>
+          <span>{product.reference}</span>
+        </div>
         <div className={styles.meta}>
           <span className={styles.price}>
             {formatCurrency(product.basePrice)}
@@ -44,7 +48,9 @@ export function ProductCard({ product, onClick }: Props) {
             {product.colors.length} cor{product.colors.length > 1 ? 'es' : ''}
           </span>
         </div>
-        <span className={styles.cta}>Ver Detalhes →</span>
+        <span className={styles.cta}>
+          {product.featured ? 'Destaque · Ver Detalhes →' : 'Ver Detalhes →'}
+        </span>
       </div>
     </button>
   );

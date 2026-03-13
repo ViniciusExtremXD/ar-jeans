@@ -93,10 +93,40 @@
   border-top: 1px solid var(--gray-200);
 }
 
+.footerLeft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .pieces {
   font-size: 10px;
   font-weight: 600;
   color: var(--gray-400);
+}
+
+.discountBadge {
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--green-disc);
+  background: rgba(27, 122, 62, 0.08);
+  border: 1px solid rgba(27, 122, 62, 0.2);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+}
+
+.priceGroup {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.originalPrice {
+  font-size: 11px;
+  color: var(--gray-400);
+  text-decoration: line-through;
 }
 
 .subtotal {
@@ -104,4 +134,8 @@
   font-size: 18px;
   color: var(--gold-dark);
   letter-spacing: 0.03em;
+}
+
+.subtotal.discounted {
+  color: var(--green-disc);
 }

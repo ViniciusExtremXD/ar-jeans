@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { getProductById } from '@/data/products';
 import { useProduct } from '@/hooks/useProduct';
 import { useCartContext } from '@/contexts/CartContext';
+import { calculateDiscount } from '@/data/business-rules';
 import { trackEvent } from '@/utils/analytics';
 import { formatCurrency } from '@/utils/format';
 import { PhotoGallery } from '@/components/product/PhotoGallery';
@@ -19,7 +20,6 @@ interface Props {
 export function ProductDetail({ productId, onClose }: Props) {
   const product = getProductById(productId);
   const { addItem } = useCartContext();
-  const { computed } = useCartContext();
   const [added, setAdded] = useState(false);
 
   const {
@@ -39,7 +39,13 @@ export function ProductDetail({ productId, onClose }: Props) {
   if (!product) return null;
 
   const totalPieces = getTotalPieces();
-  const projectedTotal = computed.totalPieces + totalPieces;
+
+  // Per-product discount based on current selection quantity
+  const gross = totalPieces * product.basePrice;
+  const { discountPercent: currentDiscount, discountAmount: currentDiscountAmt } =
+    totalPieces > 0 ? calculateDiscount(gross, totalPieces) : { discountPercent: 0, discountAmount: 0 };
+  const currentFinal = gross - currentDiscountAmt;
+
   const previewColor = product.colors.find(c => c.id === previewColorId) ?? product.colors[0]!;
 
   const handleAddToCart = useCallback(() => {
@@ -119,8 +125,8 @@ export function ProductDetail({ productId, onClose }: Props) {
               </div>
             </div>
 
-            {/* Discount info */}
-            <DiscountInfo currentPieces={projectedTotal} />
+            {/* Discount info — per this product's quantity only */}
+            <DiscountInfo currentPieces={totalPieces} />
 
             {/* Order panel */}
             <div className={styles.orderPanel}>
@@ -165,9 +171,19 @@ export function ProductDetail({ productId, onClose }: Props) {
                 {totalPieces} peça{totalPieces !== 1 ? 's' : ''}
               </span>
               {totalPieces > 0 && (
-                <span className={styles.summaryTotal}>
-                  {formatCurrency(totalPieces * product.basePrice)}
-                </span>
+                <>
+                  {currentDiscount > 0 && (
+                    <span className={styles.summaryOriginal}>
+                      {formatCurrency(gross)}
+                    </span>
+                  )}
+                  <span className={styles.summaryTotal}>
+                    {formatCurrency(currentDiscount > 0 ? currentFinal : gross)}
+                    {currentDiscount > 0 && (
+                      <span className={styles.summaryBadge}>{currentDiscount}% OFF</span>
+                    )}
+                  </span>
+                </>
               )}
             </div>
 

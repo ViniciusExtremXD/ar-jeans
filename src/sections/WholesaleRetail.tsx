@@ -94,7 +94,9 @@ export function WholesaleRetail() {
         </div>
 
         {/* Tamanhos */}
-        <div id="tamanhos" className={styles.sizesBlock}>
+        <div id="tamanhos" className={styles.sizesSection}>
+          <span className={styles.tag}>GRADE DE MEDIDAS</span>
+          <div className={styles.sizesBlock}>
           <h3 className={styles.sizesTitle}>Tamanhos Disponíveis</h3>
           <div className={styles.sizesGrid}>
             <div className={styles.sizeGroup}>
@@ -133,6 +135,7 @@ export function WholesaleRetail() {
           <p className={styles.sizesNote}>
             * Disponibilidade por tamanho varia por modelo. Consulte via WhatsApp para grade completa.
           </p>
+          </div>
         </div>
       </div>
     </section>

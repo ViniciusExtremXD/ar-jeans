@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Product } from '@/types/product';
 import { getActiveProducts } from '@/data/products';
+import { BUSINESS_RULES } from '@/data/business-rules';
 import { ProductCard } from '@/components/product/ProductCard';
 import { CatalogFilters } from '@/components/catalog/CatalogFilters';
 import {
@@ -19,6 +20,24 @@ interface Props {
 export function Showcase({ onProductSelect }: Props) {
   const products = useMemo(() => getActiveProducts(), []);
   const [filters, setFilters] = useState(DEFAULT_CATALOG_FILTERS);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [headerRevealed, setHeaderRevealed] = useState(false);
+
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setHeaderRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -32px 0px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const allOptions = useMemo(() => buildCatalogFilterOptions(products), [products]);
 
@@ -96,8 +115,11 @@ export function Showcase({ onProductSelect }: Props) {
 
   return (
     <section id="catalogo" className={styles.showcase}>
-      <div className={styles.header}>
-        <span className={styles.tag}>COLEÇÃO</span>
+      <div
+        ref={headerRef}
+        className={`${styles.header} ${headerRevealed ? styles.revealed : ''}`}
+      >
+        <span className={styles.tag}>{BUSINESS_RULES.collectionName}</span>
         <h2 className={styles.title}>Catálogo Completo</h2>
         <p className={styles.subtitle}>
           Navegue por categoria, subcategoria e tipo para montar seu pedido

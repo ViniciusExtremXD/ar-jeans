@@ -1,12 +1,12 @@
 .hero {
   position: relative;
-  min-height: 85vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--black);
   overflow: hidden;
-  padding: 100px 20px 60px;
+  padding: 88px 20px 42px;
 }
 
 .content {
@@ -17,7 +17,7 @@
   align-items: center;
   text-align: center;
   gap: 20px;
-  max-width: 560px;
+  max-width: 540px;
   animation: fadeUp 0.6s ease;
 }
 
@@ -80,7 +80,7 @@
 /* ── Title ── */
 .title {
   font-family: var(--font-display);
-  font-size: 52px;
+  font-size: 48px;
   color: var(--white);
   line-height: 0.95;
   letter-spacing: 0.02em;
@@ -93,7 +93,7 @@
 
 .subtitle {
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--gray-400);
   max-width: 420px;
 }
@@ -102,8 +102,8 @@
 .highlights {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 20px;
+  gap: 12px;
+  padding: 12px 18px;
   background: rgba(201, 168, 76, 0.06);
   border: 1px solid rgba(201, 168, 76, 0.12);
   border-radius: var(--radius-lg);
@@ -151,7 +151,7 @@
   color: var(--black);
   border: none;
   border-radius: var(--radius-full);
-  padding: 12px 32px;
+  padding: 11px 30px;
   font-family: var(--font-display);
   font-size: 18px;
   letter-spacing: 0.06em;
@@ -164,27 +164,6 @@
   background: var(--gold-dark);
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(201, 168, 76, 0.4);
-}
-
-.ctaWhats {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: #25D366;
-  color: #fff;
-  border-radius: var(--radius-full);
-  padding: 12px 22px;
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all var(--ease-default);
-  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
-}
-
-.ctaWhats:hover {
-  background: #1da855;
-  transform: translateY(-2px);
 }
 
 .ctaInsta {
@@ -218,7 +197,7 @@
   font-size: 11px;
   color: var(--gray-600);
   letter-spacing: 0.03em;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 /* ── CTA (legacy kept for ref) ── */
@@ -276,12 +255,12 @@
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .hero {
-    min-height: 75vh;
-    padding: 30px 16px;
+    min-height: auto;
+    padding: 74px 16px 26px;
   }
 
   .title {
-    font-size: 34px;
+    font-size: 32px;
   }
 
   .subtitle {
@@ -289,8 +268,8 @@
   }
 
   .highlights {
-    gap: 8px;
-    padding: 10px 12px;
+    gap: 6px;
+    padding: 9px 10px;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -303,21 +282,24 @@
     font-size: 8px;
   }
 
-  .cta,
   .ctaPrimary {
-    padding: 10px 28px;
-    font-size: 16px;
+    width: 100%;
+    max-width: 320px;
+    padding: 11px 24px;
+    font-size: 15px;
   }
 
-  .ctaWhats,
   .ctaInsta {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
     font-size: 12px;
-    padding: 10px 16px;
+    padding: 10px 14px;
   }
 
   .trustStrip {
     font-size: 10px;
-    gap: 6px;
+    gap: 5px;
   }
 
   .logoA,

@@ -2,9 +2,7 @@ import { useCartContext } from '@/contexts/CartContext';
 import { formatCurrency, formatNumber } from '@/utils/format';
 import { buildWhatsAppMessage, sendToWhatsApp } from '@/utils/whatsapp';
 import { trackEvent } from '@/utils/analytics';
-import { WHOLESALE_THRESHOLD } from '@/data/business-rules';
 import { GoldButton } from '@/components/ui/GoldButton';
-import { DiscountInfo } from '@/components/product/DiscountInfo';
 import { CartItem } from './CartItem';
 import styles from './CartDrawer.module.css';
 
@@ -15,7 +13,7 @@ interface Props {
 
 export function CartDrawer({ open, onClose }: Props) {
   const { computed, removeItem, clearCart } = useCartContext();
-  const { items, totalPieces, subtotalBruto, discountPercent, discountAmount, totalFinal, discountTier, orderType } = computed;
+  const { items, totalPieces, subtotalBruto, totalDiscount, totalFinal, orderType } = computed;
 
   const handleSendWhatsApp = () => {
     if (totalPieces === 0) return;
@@ -73,9 +71,6 @@ export function CartDrawer({ open, onClose }: Props) {
                 ))}
               </div>
 
-              {/* Discount indicator */}
-              <DiscountInfo currentPieces={totalPieces} />
-
               {/* Clear cart */}
               <button
                 className={styles.clearBtn}
@@ -100,17 +95,10 @@ export function CartDrawer({ open, onClose }: Props) {
                 <span>Subtotal</span>
                 <span>{formatCurrency(subtotalBruto)}</span>
               </div>
-              {discountPercent > 0 && discountTier && (
+              {totalDiscount > 0 && (
                 <div className={`${styles.totalRow} ${styles.discount}`}>
-                  <span>{discountTier.label} (-{discountPercent}%)</span>
-                  <span>-R$ {formatNumber(discountAmount)}</span>
-                </div>
-              )}
-              {orderType === 'varejo' && totalPieces > 0 && (
-                <div className={styles.totalRow}>
-                  <span className={styles.hint}>
-                    A partir de {WHOLESALE_THRESHOLD} pç você entra no atacado!
-                  </span>
+                  <span>Desconto (atacado)</span>
+                  <span>-R$ {formatNumber(totalDiscount)}</span>
                 </div>
               )}
               <div className={`${styles.totalRow} ${styles.totalFinal}`}>

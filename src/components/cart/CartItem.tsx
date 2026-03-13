@@ -43,10 +43,20 @@ export function CartItem({ item, onRemove }: Props) {
       </div>
 
       <div className={styles.footer}>
-        <span className={styles.pieces}>{item.totalPieces} pç</span>
-        <span className={styles.subtotal}>
-          {formatCurrency(item.subtotal)}
-        </span>
+        <div className={styles.footerLeft}>
+          <span className={styles.pieces}>{item.totalPieces} pç</span>
+          {item.discountPercent > 0 && (
+            <span className={styles.discountBadge}>{item.discountPercent}% OFF</span>
+          )}
+        </div>
+        <div className={styles.priceGroup}>
+          {item.discountPercent > 0 && (
+            <span className={styles.originalPrice}>{formatCurrency(item.subtotal)}</span>
+          )}
+          <span className={`${styles.subtotal} ${item.discountPercent > 0 ? styles.discounted : ''}`}>
+            {formatCurrency(item.discountPercent > 0 ? item.subtotalFinal : item.subtotal)}
+          </span>
+        </div>
       </div>
     </div>
   );

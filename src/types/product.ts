@@ -72,18 +72,24 @@ export interface CartItemComputed extends CartItem {
   color: ProductColor;
   totalPieces: number;
   unitPrice: number;
-  subtotal: number;
+  discountPercent: number;
+  discountAmount: number;
+  subtotal: number;       // gross (totalPieces × unitPrice)
+  subtotalFinal: number;  // after per-item discount
+  orderType: OrderType;
 }
 
 export interface CartComputed {
   items: CartItemComputed[];
   totalPieces: number;
   subtotalBruto: number;
-  discountTier: DiscountTier | null;
-  discountPercent: number;
-  discountAmount: number;
+  totalDiscount: number;
   totalFinal: number;
   orderType: OrderType;
+  // kept for backward compat (whatsapp, totals display)
+  discountTier: DiscountTier | null;
+  discountPercent: number;
+  discountAmount: number; // = totalDiscount
 }
 
 // ── Business Rules ──

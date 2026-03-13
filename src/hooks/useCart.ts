@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
-import type { CartItem, CartItemComputed, CartComputed } from '@/types/product';
+import type { CartItem, CartItemComputed, CartComputed, OrderType } from '@/types/product';
 import { getProductById } from '@/data/products';
-import { calculateDiscount } from '@/data/business-rules';
+import { calculateDiscount, getOrderType } from '@/data/business-rules';
 
 const STORAGE_KEY = 'ar-jeans-cart';
 
@@ -126,23 +126,31 @@ export function computeCart(items: CartItem[]): CartComputed {
       const unitPrice = product.basePrice;
       const subtotal = totalPieces * unitPrice;
 
-      return { ...item, product, color, totalPieces, unitPrice, subtotal };
+      // Discount calculated per-item, based solely on this item's own quantity
+      const { discountPercent, discountAmount } = calculateDiscount(subtotal, totalPieces);
+      const subtotalFinal = subtotal - discountAmount;
+      const orderType = getOrderType(totalPieces);
+
+      return { ...item, product, color, totalPieces, unitPrice, discountPercent, discountAmount, subtotal, subtotalFinal, orderType };
     })
     .filter((x): x is CartItemComputed => x !== null);
 
   const totalPieces = computedItems.reduce((s, i) => s + i.totalPieces, 0);
   const subtotalBruto = computedItems.reduce((s, i) => s + i.subtotal, 0);
-  const { tier, discountPercent, discountAmount, totalFinal, orderType } =
-    calculateDiscount(subtotalBruto, totalPieces);
+  const totalDiscount = computedItems.reduce((s, i) => s + i.discountAmount, 0);
+  const totalFinal = subtotalBruto - totalDiscount;
+  const orderType: OrderType = computedItems.some((i) => i.orderType === 'atacado') ? 'atacado' : 'varejo';
 
   return {
     items: computedItems,
     totalPieces,
     subtotalBruto,
-    discountTier: tier,
-    discountPercent,
-    discountAmount,
+    totalDiscount,
     totalFinal,
     orderType,
+    // legacy aliases
+    discountTier: null,
+    discountPercent: 0,
+    discountAmount: totalDiscount,
   };
 }

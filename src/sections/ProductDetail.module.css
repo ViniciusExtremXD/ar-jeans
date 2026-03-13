@@ -240,6 +240,27 @@
   font-size: 24px;
   color: var(--gold);
   letter-spacing: 0.03em;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.summaryOriginal {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  text-decoration: line-through;
+}
+
+.summaryBadge {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--green-disc);
+  background: rgba(27, 122, 62, 0.18);
+  border: 1px solid rgba(27, 122, 62, 0.35);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
 }
 
 .addedFeedback {

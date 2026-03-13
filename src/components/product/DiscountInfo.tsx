@@ -1,4 +1,4 @@
-import { DISCOUNT_TIERS, WHOLESALE_THRESHOLD } from '@/data/business-rules';
+import { getDiscountTier, WHOLESALE_THRESHOLD } from '@/data/business-rules';
 import styles from './DiscountInfo.module.css';
 
 interface Props {
@@ -6,42 +6,24 @@ interface Props {
 }
 
 export function DiscountInfo({ currentPieces }: Props) {
-  return (
-    <div className={styles.box}>
-      <div className={styles.title}>Varejo & Atacado — Desconto Progressivo</div>
-      <div className={styles.row}>
-        {DISCOUNT_TIERS.map((tier) => {
-          const isActive =
-            currentPieces >= tier.minPieces &&
-            currentPieces <= tier.maxPieces;
-          const isPast = currentPieces > tier.maxPieces;
-          return (
-            <div
-              key={tier.minPieces}
-              className={`${styles.card} ${isActive ? styles.active : ''} ${isPast ? styles.past : ''}`}
-            >
-              <div className={styles.value}>
-                {tier.orderType === 'varejo'
-                  ? 'Varejo'
-                  : tier.discountPercent > 0
-                    ? `-${tier.discountPercent}%`
-                    : '0%'}
-              </div>
-              <div className={styles.label}>{tier.label}</div>
-              <div className={styles.sub}>
-                {tier.maxPieces === Infinity
-                  ? `${tier.minPieces}+ pç`
-                  : `${tier.minPieces}–${tier.maxPieces} pç`}
-              </div>
-            </div>
-          );
-        })}
+  if (currentPieces <= 0) return null;
+
+  const tier = getDiscountTier(currentPieces);
+
+  if (tier.discountPercent > 0) {
+    return (
+      <div className={styles.active}>
+        <span className={styles.check}>&#10003;</span>
+        <span className={styles.pct}>{tier.discountPercent}% OFF</span>
+        <span className={styles.tierLabel}>· {tier.label}</span>
       </div>
-      {currentPieces > 0 && currentPieces < WHOLESALE_THRESHOLD && (
-        <div className={styles.warning}>
-          💡 A partir de {WHOLESALE_THRESHOLD} peças você entra no atacado com desconto progressivo!
-        </div>
-      )}
-    </div>
+    );
+  }
+
+  const remaining = WHOLESALE_THRESHOLD - currentPieces;
+  return (
+    <p className={styles.hint}>
+      +{remaining} peça{remaining !== 1 ? 's' : ''} para 10% OFF automático
+    </p>
   );
 }

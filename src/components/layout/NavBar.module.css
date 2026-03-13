@@ -4,16 +4,17 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(10, 10, 10, 0.92);
+  background: rgba(10, 10, 10, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(201, 168, 76, 0.08);
-  transition: box-shadow 0.3s ease;
+  transition: background 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
 .navbar.scrolled {
-  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
-  border-bottom-color: rgba(201, 168, 76, 0.14);
+  background: rgba(12, 12, 12, 0.96);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.42);
+  border-bottom-color: rgba(201, 168, 76, 0.2);
 }
 
 .inner {
@@ -24,6 +25,11 @@
   display: flex;
   align-items: center;
   gap: 28px;
+  transition: height 0.28s ease, padding 0.28s ease;
+}
+
+.scrolled .inner {
+  height: 64px;
 }
 
 /* ── Logo ── */
@@ -78,7 +84,7 @@
   font-weight: 500;
   color: var(--gray-400);
   letter-spacing: 0.04em;
-  padding: 6px 10px;
+  padding: 8px 10px;
   border-radius: var(--radius-sm);
   transition: color 0.2s, background 0.2s;
   white-space: nowrap;
@@ -104,7 +110,7 @@
   font-size: 12px;
   font-weight: 500;
   color: var(--gray-400);
-  padding: 6px 12px;
+  padding: 8px 12px;
   border-radius: var(--radius-full);
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: color 0.2s, border-color 0.2s;
@@ -121,7 +127,7 @@
   color: var(--black);
   border: none;
   border-radius: var(--radius-full);
-  padding: 7px 18px;
+  padding: 9px 18px;
   font-family: var(--font-body);
   font-size: 12px;
   font-weight: 600;
@@ -178,8 +184,10 @@
 .mobileMenu {
   background: rgba(10, 10, 10, 0.98);
   border-top: 1px solid rgba(201, 168, 76, 0.1);
-  padding: 16px 24px 24px;
+  padding: 12px 20px 20px;
   animation: fadeIn 0.2s ease;
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
 }
 
 .mobileLinks {
@@ -197,7 +205,7 @@
   font-size: 16px;
   font-weight: 500;
   color: var(--gray-400);
-  padding: 10px 0;
+  padding: 12px 0;
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition: color 0.2s;
@@ -252,6 +260,16 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+  .inner {
+    height: 56px;
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .scrolled .inner {
+    height: 60px;
+  }
+
   .nav {
     display: none;
   }
@@ -262,5 +280,14 @@
 
   .hamburger {
     display: flex;
+  }
+
+  .logoAR {
+    font-size: 22px;
+  }
+
+  .logoJeans {
+    font-size: 12px;
+    letter-spacing: 0.12em;
   }
 }

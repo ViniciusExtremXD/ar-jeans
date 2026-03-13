@@ -8,16 +8,7 @@ import { formatNumber } from './format';
  * Desacoplada da UI — recebe apenas dados computados do carrinho.
  */
 export function buildWhatsAppMessage(cart: CartComputed): string {
-  const {
-    items,
-    totalPieces,
-    subtotalBruto,
-    discountPercent,
-    discountAmount,
-    totalFinal,
-    discountTier,
-    orderType,
-  } = cart;
+  const { items, totalPieces, subtotalBruto, totalDiscount, totalFinal, orderType } = cart;
 
   const orderLabel = orderType === 'atacado' ? 'ATACADO' : 'VAREJO';
 
@@ -43,32 +34,32 @@ export function buildWhatsAppMessage(cart: CartComputed): string {
     lines.push(`  Ref: ${item.product.reference}`);
     lines.push(`  Cor: ${item.color.label}`);
     lines.push(`  Tamanhos: ${sizesText}`);
-    lines.push(
-      `  ${item.totalPieces} pç × R$ ${formatNumber(item.unitPrice)} = *R$ ${formatNumber(item.subtotal)}*`
-    );
+
+    if (item.discountPercent > 0) {
+      lines.push(
+        `  ${item.totalPieces} pç × R$ ${formatNumber(item.unitPrice)} (-${item.discountPercent}%) = *R$ ${formatNumber(item.subtotalFinal)}*`
+      );
+      lines.push(`  _${item.orderType === 'atacado' ? 'Atacado' : 'Varejo'} · ${item.discountPercent}% OFF neste item_`);
+    } else {
+      lines.push(
+        `  ${item.totalPieces} pç × R$ ${formatNumber(item.unitPrice)} = *R$ ${formatNumber(item.subtotal)}*`
+      );
+    }
     lines.push('');
   });
 
   // Totais
   lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  lines.push(`Tipo de pedido: *${orderLabel}*`);
   lines.push(`Total de peças: *${totalPieces}*`);
-  lines.push(`Subtotal: R$ ${formatNumber(subtotalBruto)}`);
+  lines.push(`Subtotal bruto: R$ ${formatNumber(subtotalBruto)}`);
 
-  if (discountPercent > 0 && discountTier) {
-    lines.push(`Faixa aplicada: *${discountTier.label}* (-${discountPercent}%)`);
-    lines.push(`Desconto: -R$ ${formatNumber(discountAmount)}`);
+  if (totalDiscount > 0) {
+    lines.push(`Desconto (atacado): -R$ ${formatNumber(totalDiscount)}`);
   }
 
   lines.push(`*TOTAL: R$ ${formatNumber(totalFinal)}*`);
   lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   lines.push('');
-
-  if (orderType === 'atacado') {
-    lines.push('Gostaria de finalizar este pedido no atacado.');
-  } else {
-    lines.push('Gostaria de finalizar este pedido no varejo.');
-  }
   lines.push('Aguardo confirmação! 🙏');
 
   lines.push('');

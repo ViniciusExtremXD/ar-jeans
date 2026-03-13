@@ -1,7 +1,6 @@
-import { useRef, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { CartProvider } from '@/contexts/CartContext';
 import { NavBar } from '@/components/layout/NavBar';
-import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat';
 import { Hero } from '@/sections/Hero';
 import { WholesaleRetail } from '@/sections/WholesaleRetail';
 import { About } from '@/sections/About';
@@ -14,15 +13,15 @@ import { Footer } from '@/sections/Footer';
 import { ProductDetail } from '@/sections/ProductDetail';
 import { CartDrawer } from '@/components/cart/CartDrawer';
 import { CartIndicator } from '@/components/cart/CartIndicator';
+import { scrollToSection } from '@/utils/scroll';
 import styles from './App.module.css';
 
 function AppContent() {
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const showcaseRef = useRef<HTMLDivElement>(null);
 
   const scrollToShowcase = useCallback(() => {
-    showcaseRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollToSection('catalogo');
   }, []);
 
   return (
@@ -31,15 +30,15 @@ function AppContent() {
 
       <Hero onScrollToShowcase={scrollToShowcase} />
 
-      <WholesaleRetail />
+      <div>
+        <Showcase onProductSelect={setSelectedProductId} />
+      </div>
 
-      <About />
+      <WholesaleRetail />
 
       <Trust />
 
-      <div ref={showcaseRef}>
-        <Showcase onProductSelect={setSelectedProductId} />
-      </div>
+      <About />
 
       <FAQ />
 
@@ -65,9 +64,6 @@ function AppContent() {
 
       {/* Cart Floating Button */}
       <CartIndicator onClick={() => setIsCartOpen(true)} />
-
-      {/* WhatsApp Float */}
-      <WhatsAppFloat />
     </div>
   );
 }

@@ -1,10 +1,39 @@
-.box {
-  background: var(--green-light);
-  border: 1px solid rgba(27, 122, 62, 0.25);
-  border-radius: 10px;
-  padding: 10px 14px;
-  margin-bottom: 14px;
+.active {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  background: rgba(27, 122, 62, 0.07);
+  border: 1px solid rgba(27, 122, 62, 0.2);
+  border-radius: var(--radius-full);
 }
+
+.check {
+  font-size: 10px;
+  color: var(--green-disc);
+  font-weight: 700;
+}
+
+.pct {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--green-disc);
+  letter-spacing: 0.04em;
+}
+
+.tierLabel {
+  font-size: 10px;
+  color: var(--gray-600);
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--gold-dark);
+  font-style: italic;
+  margin: 0;
+}
+
+/* removed: .title .row .card .active .past .value .label .sub .warning */
 
 .title {
   font-size: 9px;

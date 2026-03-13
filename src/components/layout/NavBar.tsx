@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { COMPANY_INFO } from '@/data/business-rules';
 import { sendToWhatsApp } from '@/utils/whatsapp';
+import { scrollToSection } from '@/utils/scroll';
 import styles from './NavBar.module.css';
 
 interface NavLink {
@@ -11,18 +12,11 @@ interface NavLink {
 const NAV_LINKS: NavLink[] = [
   { label: 'Coleção', anchor: 'catalogo' },
   { label: 'Atacado', anchor: 'atacado-varejo' },
-  { label: 'Tamanhos', anchor: 'atacado-varejo' },
+  { label: 'Tamanhos', anchor: 'tamanhos' },
   { label: 'FAQ', anchor: 'faq' },
   { label: 'Localização', anchor: 'localizacao' },
   { label: 'Contato', anchor: 'contato' },
 ];
-
-function scrollTo(anchor: string) {
-  const el = document.getElementById(anchor);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
 
 export function NavBar() {
   const [scrolled, setScrolled] = useState(false);
@@ -34,9 +28,17 @@ export function NavBar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
   const handleLink = useCallback((anchor: string) => {
     setMenuOpen(false);
-    scrollTo(anchor);
+    scrollToSection(anchor);
   }, []);
 
   const handleWhatsApp = useCallback(() => {
@@ -44,13 +46,13 @@ export function NavBar() {
   }, []);
 
   return (
-    <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+    <header data-sticky-header="true" className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.inner}>
         {/* Logo */}
         <button
           className={styles.logo}
           type="button"
-          onClick={() => scrollTo('topo')}
+          onClick={() => scrollToSection('topo', { extraOffset: 0 })}
           aria-label="AR Jeans — início"
         >
           <span className={styles.logoAR}>AR</span>

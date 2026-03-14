@@ -7,9 +7,10 @@ import styles from './ProductCard.module.css';
 interface Props {
   product: Product;
   onClick: () => void;
+  cardIndex?: number;
 }
 
-export function ProductCard({ product, onClick }: Props) {
+export function ProductCard({ product, onClick, cardIndex = 0 }: Props) {
   const firstColor = product.colors[0];
   const photo = firstColor?.photos[0];
 
@@ -20,8 +21,16 @@ export function ProductCard({ product, onClick }: Props) {
     unissex: 'Unissex',
   };
 
+  // Cap stagger at 12 cards worth to avoid very long delays on large grids
+  const staggerDelay = Math.min(cardIndex, 11) * 50;
+
   return (
-    <button className={styles.card} onClick={onClick} type="button">
+    <button
+      className={styles.card}
+      onClick={onClick}
+      type="button"
+      style={{ animationDelay: `${staggerDelay}ms` } as React.CSSProperties}
+    >
       <div className={styles.imageWrap}>
         {photo && (
           <img

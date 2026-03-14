@@ -9,7 +9,10 @@
   border-radius: var(--radius-md);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  transition: background var(--ease-default), transform 0.15s;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-base) var(--ease-spring),
+    box-shadow var(--dur-fast) var(--ease-out);
   cursor: pointer;
   border: none;
   white-space: nowrap;
@@ -19,10 +22,16 @@
   background: var(--gray-400) !important;
   cursor: not-allowed;
   transform: none !important;
+  box-shadow: none !important;
 }
 
 .btn:not(:disabled):hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+}
+
+.btn:not(:disabled):active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: 60ms;
 }
 
 /* Variants */

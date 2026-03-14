@@ -1,13 +1,15 @@
+import { useReveal } from '@/hooks/useReveal';
 import { COMPANY_INFO } from '@/data/business-rules';
 import styles from './Location.module.css';
 
 export function Location() {
+  const { ref: sectionRef, revealed } = useReveal<HTMLElement>();
   const [weekdaysHours = '', saturdayHours = ''] = COMPANY_INFO.serviceHours
     .split('·')
     .map((part) => part.trim());
 
   return (
-    <section id="localizacao" className={styles.section}>
+    <section id="localizacao" ref={sectionRef} className={`${styles.section} reveal ${revealed ? 'revealed' : ''}`}>
       <div className={styles.container}>
         <div className={styles.info}>
           <span className={styles.tag}>ONDE ESTAMOS</span>

@@ -54,7 +54,12 @@ a {
 
 /* ── Animations ── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(var(--reveal-y, 18px)); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUpSm {
+  from { opacity: 0; transform: translateY(var(--reveal-y-sm, 10px)); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -64,7 +69,13 @@ a {
 }
 
 @keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.95); }
+  from { opacity: 0; transform: scale(var(--reveal-scale, 0.96)); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scaleSpring {
+  from { opacity: 0; transform: scale(0.88); }
+  50%  { transform: scale(1.02); }
   to   { opacity: 1; transform: scale(1); }
 }
 
@@ -78,6 +89,11 @@ a {
   to   { transform: translateX(100%); }
 }
 
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.4; transform: scale(1.5); }
@@ -88,6 +104,41 @@ a {
   50%  { transform: scale(1.05); }
   70%  { transform: scale(0.9); }
   100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes ripple {
+  to { transform: scale(2.4); opacity: 0; }
+}
+
+/* ── Scroll-reveal utility ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 18px));
+  transition:
+    opacity var(--dur-slow, 400ms) var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)),
+    transform var(--dur-slow, 400ms) var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1));
+  will-change: opacity, transform;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── reduced-motion: off ── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @media (max-width: 640px) {

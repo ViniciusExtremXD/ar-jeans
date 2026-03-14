@@ -39,7 +39,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-spring);
   flex-shrink: 0;
   padding: 0;
   line-height: 1;
@@ -48,6 +51,11 @@
 .btn:hover {
   background: var(--gold-light);
   color: var(--gold-dark);
+}
+
+.btn:active {
+  transform: scale(0.88);
+  transition-duration: 60ms;
 }
 
 .input {

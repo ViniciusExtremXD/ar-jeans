@@ -156,10 +156,11 @@ export function Showcase({ onProductSelect }: Props) {
       </div>
 
       <div className={styles.grid}>
-        {filteredProducts.map((product: Product) => (
+        {filteredProducts.map((product: Product, idx: number) => (
           <ProductCard
             key={product.id}
             product={product}
+            cardIndex={idx}
             onClick={() => {
               trackEvent('catalog_product_click', {
                 productId: product.id,

@@ -17,10 +17,25 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: all var(--ease-default);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-base) var(--ease-spring),
+    box-shadow var(--dur-fast) var(--ease-out);
   background: var(--white);
   color: var(--gray-600);
   user-select: none;
+}
+
+.btn:hover {
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: scale(0.96);
+  transition-duration: 60ms;
 }
 
 .btn.active {
@@ -28,6 +43,7 @@
   background: var(--gold-light);
   color: var(--gold-dark);
   box-shadow: var(--shadow-gold);
+  transform: translateY(-1px);
 }
 
 .dot {

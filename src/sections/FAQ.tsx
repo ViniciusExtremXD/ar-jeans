@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useReveal } from '@/hooks/useReveal';
 import styles from './FAQ.module.css';
 
 interface FAQItem {
@@ -51,9 +52,10 @@ const ITEMS: FAQItem[] = [
 
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
+  const { ref: sectionRef, revealed } = useReveal<HTMLElement>();
 
   return (
-    <section id="faq" className={styles.section}>
+    <section id="faq" ref={sectionRef} className={`${styles.section} reveal ${revealed ? 'revealed' : ''}`}>
       <div className={styles.container}>
         <div className={styles.header}>
           <span className={styles.tag}>DÚVIDAS FREQUENTES</span>
@@ -73,15 +75,19 @@ export function FAQ() {
                 aria-expanded={open === idx}
               >
                 <span>{item.q}</span>
-                <span className={styles.arrow} aria-hidden="true">
-                  {open === idx ? '−' : '+'}
+                <span className={`${styles.arrow} ${open === idx ? styles.arrowOpen : ''}`} aria-hidden="true">
+                  ▾
                 </span>
               </button>
-              {open === idx && (
-                <div className={styles.answer} role="region">
+              <div
+                className={styles.answerWrap}
+                style={{ '--answer-open': open === idx ? '1' : '0' } as React.CSSProperties}
+                aria-hidden={open !== idx}
+              >
+                <div className={styles.answer}>
                   <p>{item.a}</p>
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>

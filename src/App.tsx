@@ -12,6 +12,7 @@ import { Footer } from '@/sections/Footer';
 import { ProductDetail } from '@/sections/ProductDetail';
 import { CartDrawer } from '@/components/cart/CartDrawer';
 import { CartIndicator } from '@/components/cart/CartIndicator';
+import { BackToTop } from '@/components/ui/BackToTop';
 import { scrollToSection } from '@/utils/scroll';
 import styles from './App.module.css';
 
@@ -67,6 +68,9 @@ function AppContent() {
 
       {/* Cart Floating Button */}
       <CartIndicator onClick={() => setIsCartOpen(true)} />
+
+      {/* Back to Top */}
+      <BackToTop />
     </div>
   );
 }

@@ -1,7 +1,9 @@
+import { useReveal } from '@/hooks/useReveal';
 import { COMPANY_INFO } from '@/data/business-rules';
 import styles from './About.module.css';
 
 export function About() {
+  const { ref: sectionRef, revealed } = useReveal<HTMLElement>();
   const [weekHours = '', saturdayHours = ''] = COMPANY_INFO.serviceHours
     .split('·')
     .map((part) => part.trim());
@@ -11,7 +13,7 @@ export function About() {
   const addressLine2 = addressRest.join(' – ');
 
   return (
-    <section id="sobre" className={styles.section}>
+    <section id="sobre" ref={sectionRef} className={`${styles.section} reveal ${revealed ? 'revealed' : ''}`}>
       <div className={styles.container}>
         <div className={styles.text}>
           <span className={styles.tag}>SOBRE A MARCA</span>

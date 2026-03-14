@@ -6,17 +6,26 @@
   overflow: hidden;
   border: 1.5px solid var(--gray-200);
   cursor: pointer;
-  transition: transform var(--ease-default), box-shadow var(--ease-default),
-    border-color var(--ease-default);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
   text-align: left;
   width: 100%;
   padding: 0;
+  animation: fadeUp var(--dur-slow) var(--ease-out) both;
+  will-change: transform;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
   border-color: var(--gold);
+}
+
+.card:active {
+  transform: translateY(-2px);
+  transition-duration: 80ms;
 }
 
 .imageWrap {
@@ -32,11 +41,11 @@
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  transition: transform 0.3s ease;
+  transition: transform var(--dur-slow) var(--ease-out);
 }
 
 .card:hover .image {
-  transform: scale(1.03);
+  transform: scale(1.06);
 }
 
 .badges {
@@ -167,11 +176,16 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-top: 4px;
-  transition: color var(--ease-default);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    letter-spacing var(--dur-base) var(--ease-out);
 }
 
 .card:hover .cta {
   color: var(--gold-dark);
+  transform: translateX(3px);
+  letter-spacing: 0.1em;
 }
 
 .commercial {

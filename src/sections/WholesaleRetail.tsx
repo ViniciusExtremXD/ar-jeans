@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useReveal } from '@/hooks/useReveal';
 import { BUSINESS_RULES, COMPANY_INFO } from '@/data/business-rules';
 import { DISCOUNT_TIERS } from '@/data/business-rules';
 import styles from './WholesaleRetail.module.css';
@@ -7,6 +8,7 @@ export function WholesaleRetail() {
   const [expanded, setExpanded] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState(0);
+  const { ref: sectionRef, revealed } = useReveal<HTMLElement>();
 
   useEffect(() => {
     const updateHeight = () => {
@@ -37,7 +39,7 @@ export function WholesaleRetail() {
   )}`;
 
   return (
-    <section id="atacado-varejo" className={styles.section}>
+    <section id="atacado-varejo" ref={sectionRef} className={`${styles.section} reveal ${revealed ? 'revealed' : ''}`}>
       <div className={styles.container}>
         <button
           type="button"

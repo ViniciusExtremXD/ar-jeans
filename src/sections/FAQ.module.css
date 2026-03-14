@@ -54,11 +54,14 @@
   border: 1px solid var(--gray-200);
   border-radius: var(--radius-md);
   overflow: hidden;
-  transition: border-color 0.2s;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
 }
 
 .itemOpen {
   border-color: var(--gold);
+  box-shadow: 0 4px 16px rgba(201,168,76,0.12);
 }
 
 .question {
@@ -76,7 +79,7 @@
   font-size: 14px;
   font-weight: 600;
   color: var(--gray-800);
-  transition: color 0.2s;
+  transition: color var(--dur-fast) var(--ease-out);
   line-height: 1.4;
 }
 
@@ -89,16 +92,38 @@
 }
 
 .arrow {
-  font-size: 20px;
-  font-weight: 300;
+  font-size: 18px;
+  font-weight: 400;
   color: var(--gold);
   flex-shrink: 0;
   line-height: 1;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+/* ── Answer grid-animation ── */
+.answerWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-slow) var(--ease-out);
+}
+
+.itemOpen .answerWrap {
+  grid-template-rows: 1fr;
 }
 
 .answer {
+  overflow: hidden;
   padding: 0 20px 18px;
-  animation: fadeIn 0.2s ease;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.itemOpen .answer {
+  opacity: 1;
 }
 
 .answer p {

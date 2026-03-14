@@ -18,8 +18,24 @@
   text-align: center;
   gap: 20px;
   max-width: 540px;
-  animation: fadeUp 0.6s ease;
 }
+
+/* ── Staggered hero entrance ── */
+.logo,
+.tag,
+.title,
+.subtitle,
+.highlights,
+.ctaGroup {
+  animation: fadeUp var(--dur-slow, 400ms) var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)) both;
+}
+
+.logo        { animation-delay: 80ms; }
+.tag         { animation-delay: 160ms; }
+.title       { animation-delay: 240ms; }
+.subtitle    { animation-delay: 320ms; }
+.highlights  { animation-delay: 400ms; }
+.ctaGroup    { animation-delay: 480ms; }
 
 /* ── Logo ── */
 .logo {
@@ -156,14 +172,22 @@
   font-size: 18px;
   letter-spacing: 0.06em;
   cursor: pointer;
-  transition: all var(--ease-default);
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-base) var(--ease-spring),
+    box-shadow var(--dur-base) var(--ease-out);
   box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
 }
 
 .ctaPrimary:hover {
   background: var(--gold-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(201, 168, 76, 0.4);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 28px rgba(201, 168, 76, 0.45);
+}
+
+.ctaPrimary:active {
+  transform: translateY(-1px) scale(0.99);
+  transition-duration: 80ms;
 }
 
 .ctaInsta {
@@ -179,12 +203,21 @@
   font-size: 13px;
   font-weight: 500;
   text-decoration: none;
-  transition: color 0.2s, border-color 0.2s;
+  transition:
+    color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-spring);
 }
 
 .ctaInsta:hover {
   color: #e1306c;
   border-color: rgba(225, 48, 108, 0.4);
+  transform: translateY(-2px);
+}
+
+.ctaInsta:active {
+  transform: translateY(0);
+  transition-duration: 80ms;
 }
 
 /* ── Trust strip ── */

@@ -1,8 +1,10 @@
 import { useCallback } from 'react';
+import { useReveal } from '@/hooks/useReveal';
 import { COMPANY_INFO } from '@/data/business-rules';
 import styles from './LeadCapture.module.css';
 
 export function LeadCapture() {
+  const { ref: sectionRef, revealed } = useReveal<HTMLElement>();
   const handleCatalogCTA = useCallback(() => {
     const msg = encodeURIComponent(
       'Olá! Quero receber o catálogo completo e novidades da AR Jeans. Me chamo [seu nome] e trabalho com [varejo/atacado].'
@@ -18,7 +20,7 @@ export function LeadCapture() {
   }, []);
 
   return (
-    <section id="contato" className={styles.section}>
+    <section id="contato" ref={sectionRef} className={`${styles.section} reveal ${revealed ? 'revealed' : ''}`}>
       <div className={styles.container}>
         <div className={styles.lead}>
           <span className={styles.tag}>RECEBA NOVIDADES</span>

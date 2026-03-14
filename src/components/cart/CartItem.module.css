@@ -6,6 +6,12 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  animation: slideInUp var(--dur-base) var(--ease-out) both;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.item:hover {
+  border-color: var(--gray-400);
 }
 
 .header {

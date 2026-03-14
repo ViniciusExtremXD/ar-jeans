@@ -8,7 +8,11 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(201, 168, 76, 0.08);
-  transition: background 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  transition:
+    background var(--dur-base) var(--ease-in-out),
+    box-shadow var(--dur-base) var(--ease-in-out),
+    border-color var(--dur-base) var(--ease-in-out);
+  animation: fadeIn var(--dur-slow) var(--ease-out) both;
 }
 
 .navbar.scrolled {
@@ -86,13 +90,22 @@
   letter-spacing: 0.04em;
   padding: 8px 10px;
   border-radius: var(--radius-sm);
-  transition: color 0.2s, background 0.2s;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
   white-space: nowrap;
 }
 
 .navLink:hover {
   color: var(--white);
   background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-1px);
+}
+
+.navLink:active {
+  transform: translateY(0);
+  transition-duration: 60ms;
 }
 
 /* ── CTAs ── */
@@ -113,13 +126,21 @@
   padding: 8px 12px;
   border-radius: var(--radius-full);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: color 0.2s, border-color 0.2s;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
   white-space: nowrap;
 }
 
 .instaBtn:hover {
   color: #e1306c;
   border-color: rgba(225, 48, 108, 0.4);
+  transform: translateY(-1px);
+}
+
+.instaBtn:active {
+  transform: translateY(0);
 }
 
 .whatsBtn {
@@ -132,14 +153,23 @@
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-base) var(--ease-spring),
+    box-shadow var(--dur-fast) var(--ease-out);
   white-space: nowrap;
   letter-spacing: 0.02em;
 }
 
 .whatsBtn:hover {
   background: var(--gold-dark);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(201,168,76,0.35);
+}
+
+.whatsBtn:active {
+  transform: translateY(0);
+  transition-duration: 60ms;
 }
 
 /* ── Hamburger ── */
@@ -163,8 +193,15 @@
   height: 2px;
   background: var(--gray-400);
   border-radius: 2px;
-  transition: all 0.25s ease;
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    opacity var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
   transform-origin: center;
+}
+
+.hamburger:hover span {
+  background: var(--white);
 }
 
 .hamburger.open span:nth-child(1) {
@@ -185,7 +222,7 @@
   background: rgba(10, 10, 10, 0.98);
   border-top: 1px solid rgba(201, 168, 76, 0.1);
   padding: 12px 20px 20px;
-  animation: fadeIn 0.2s ease;
+  animation: slideInUp var(--dur-base) var(--ease-out) both;
   max-height: calc(100vh - 64px);
   overflow-y: auto;
 }
@@ -208,11 +245,21 @@
   padding: 12px 0;
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: color 0.2s;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    padding-left var(--dur-base) var(--ease-out);
 }
 
 .mobileLink:hover {
   color: var(--white);
+  padding-left: 8px;
+}
+
+.mobileLink:active {
+  color: var(--gold);
+  transform: scale(0.98);
+  transition-duration: 60ms;
 }
 
 .mobileCtas {
@@ -251,11 +298,21 @@
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-base) var(--ease-spring),
+    box-shadow var(--dur-fast) var(--ease-out);
 }
 
 .mobileWhats:hover {
   background: var(--gold-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201,168,76,0.4);
+}
+
+.mobileWhats:active {
+  transform: translateY(0);
+  transition-duration: 60ms;
 }
 
 /* ── Responsive ── */

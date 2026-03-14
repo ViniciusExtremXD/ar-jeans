@@ -16,7 +16,6 @@ interface Props {
 export function PhotoGallery({
   color,
   badges = [],
-  reference,
   activePhotoIndex,
   onPhotoChange,
 }: Props) {
@@ -24,27 +23,23 @@ export function PhotoGallery({
   const photos = color.photos;
   const current = photos[activePhotoIndex] ?? photos[0];
 
-  const switchPhoto = useCallback(
-    (index: number) => {
-      if (index === activePhotoIndex) return;
-      setFading(true);
-      setTimeout(() => {
-        onPhotoChange(index);
-        setFading(false);
-      }, 160);
-    },
-    [activePhotoIndex, onPhotoChange]
-  );
+  const switchPhoto = useCallback((index: number) => {
+    if (index === activePhotoIndex) return;
+
+    setFading(true);
+    window.setTimeout(() => {
+      onPhotoChange(index);
+      setFading(false);
+    }, 160);
+  }, [activePhotoIndex, onPhotoChange]);
 
   return (
     <div className={styles.gallery}>
-      {/* Decorative shapes */}
       <div className={styles.shapeTop} />
       <div className={styles.shapeBottom} />
       <div className={styles.shapeRing} />
       <div className={styles.shapeDots} />
 
-      {/* Logo */}
       <div className={styles.logo}>
         <div className={styles.logoAR}>
           <span>A</span>R
@@ -52,7 +47,6 @@ export function PhotoGallery({
         <div className={styles.logoSub}>Jeans</div>
       </div>
 
-      {/* Main photo */}
       <div className={styles.mainWrap}>
         {current && (
           <img
@@ -63,16 +57,13 @@ export function PhotoGallery({
         )}
       </div>
 
-      {/* Thumbnails */}
       {photos.length > 1 && (
         <div className={styles.thumbs}>
-          {photos.map((photo, i) => (
+          {photos.map((photo, index) => (
             <button
-              key={i}
-              className={`${styles.thumb} ${
-                i === activePhotoIndex ? styles.thumbActive : ''
-              }`}
-              onClick={() => switchPhoto(i)}
+              key={index}
+              className={`${styles.thumb} ${index === activePhotoIndex ? styles.thumbActive : ''}`}
+              onClick={() => switchPhoto(index)}
               type="button"
             >
               <img src={asset(photo.src)} alt={photo.label} />
@@ -82,18 +73,15 @@ export function PhotoGallery({
         </div>
       )}
 
-      {/* Badges */}
       {badges.length > 0 && (
         <div className={styles.badgeWrap}>
-          {badges.map((b, i) => (
-            <Badge key={i} badge={b} />
+          {badges.map((badge, index) => (
+            <Badge key={index} badge={badge} />
           ))}
         </div>
       )}
 
-      {/* Page number & label */}
-      {reference && <div className={styles.pageNumber}>01</div>}
-      <div className={styles.catalogLabel}>Catálogo Digital</div>
+      <div className={styles.catalogLabel}>Coleção Inverno</div>
     </div>
   );
 }

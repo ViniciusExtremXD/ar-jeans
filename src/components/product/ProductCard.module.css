@@ -7,8 +7,8 @@
   border: 1.5px solid var(--gray-200);
   cursor: pointer;
   transition:
-    transform var(--dur-base) var(--ease-out),
-    box-shadow var(--dur-base) var(--ease-out),
+    transform var(--dur-hover-in) var(--ease-interactive-in),
+    box-shadow var(--dur-hover-in) var(--ease-interactive-in),
     border-color var(--dur-base) var(--ease-out);
   text-align: left;
   width: 100%;
@@ -18,14 +18,14 @@
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  box-shadow: 0 22px 36px rgba(0, 0, 0, 0.1);
   border-color: var(--gold);
 }
 
 .card:active {
-  transform: translateY(-2px);
-  transition-duration: 80ms;
+  transform: translateY(-1px) scale(0.992);
+  transition-duration: 110ms;
 }
 
 .imageWrap {
@@ -41,11 +41,11 @@
   height: 100%;
   object-fit: cover;
   object-position: center top;
-  transition: transform var(--dur-slow) var(--ease-out);
+  transition: transform var(--dur-hover-in) var(--ease-interactive-in);
 }
 
 .card:hover .image {
-  transform: scale(1.06);
+  transform: scale(1.024);
 }
 
 .badges {
@@ -178,14 +178,14 @@
   margin-top: 4px;
   transition:
     color var(--dur-fast) var(--ease-out),
-    transform var(--dur-fast) var(--ease-out),
-    letter-spacing var(--dur-base) var(--ease-out);
+    transform var(--dur-hover-in) var(--ease-interactive-in),
+    letter-spacing var(--dur-hover-in) var(--ease-interactive-in);
 }
 
 .card:hover .cta {
   color: var(--gold-dark);
-  transform: translateX(3px);
-  letter-spacing: 0.1em;
+  transform: translateX(2px);
+  letter-spacing: 0.085em;
 }
 
 .commercial {
@@ -212,13 +212,13 @@
   }
 
   .info {
-    padding: 10px 12px 12px;
-    gap: 3px;
+    padding: 11px 12px 12px;
+    gap: 4px;
   }
 
   .name {
-    font-size: 17px;
-    line-height: 1.08;
+    font-size: 18px;
+    line-height: 1.04;
   }
 
   .type {
@@ -231,8 +231,8 @@
   }
 
   .desc {
-    font-size: 10px;
-    line-height: 1.28;
+    font-size: 10.5px;
+    line-height: 1.3;
   }
 
   .catalogMeta {
@@ -248,7 +248,7 @@
   }
 
   .price {
-    font-size: 20px;
+    font-size: 21px;
   }
 
   .colors {
@@ -267,7 +267,13 @@
 
   .cta {
     font-size: 9px;
-    margin-top: 3px;
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 430px) {
+  .commercial {
+    display: none;
   }
 }
 

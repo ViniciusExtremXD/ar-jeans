@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { scrollToSection } from '@/utils/scroll';
 import styles from './BackToTop.module.css';
 
 export function BackToTop() {
@@ -11,7 +12,7 @@ export function BackToTop() {
   }, []);
 
   const handleClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToSection('catalogo');
   };
 
   return (
@@ -19,7 +20,7 @@ export function BackToTop() {
       type="button"
       className={`${styles.btn} ${visible ? styles.visible : ''}`}
       onClick={handleClick}
-      aria-label="Voltar ao topo"
+      aria-label="Voltar ao inicio do catalogo"
       tabIndex={visible ? 0 : -1}
     >
       ↑

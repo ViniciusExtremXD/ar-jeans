@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { getProductById } from '@/data/products';
 import { useProduct } from '@/hooks/useProduct';
 import { useCartContext } from '@/contexts/CartContext';
@@ -10,17 +10,24 @@ import { ColorSelector } from '@/components/product/ColorSelector';
 import { SizeGrid } from '@/components/product/SizeGrid';
 import { DiscountInfo } from '@/components/product/DiscountInfo';
 import { GoldButton } from '@/components/ui/GoldButton';
+import { OVERLAY_MOTION_MS, getMotionDuration, lockBodyScroll } from '@/utils/overlayMotion';
 import styles from './ProductDetail.module.css';
 
 interface Props {
   productId: string;
   onClose: () => void;
+  onAddedToCart?: () => void;
 }
 
-export function ProductDetail({ productId, onClose }: Props) {
+type MotionPhase = 'enter' | 'open' | 'closing';
+
+export function ProductDetail({ productId, onClose, onAddedToCart }: Props) {
   const product = getProductById(productId);
   const { addItem } = useCartContext();
-  const [added, setAdded] = useState(false);
+  const [phase, setPhase] = useState<MotionPhase>('enter');
+  const closeTimerRef = useRef<number | null>(null);
+  const enterRafRef = useRef<number | null>(null);
+  const enterRafNestedRef = useRef<number | null>(null);
 
   const {
     selection,
@@ -38,19 +45,56 @@ export function ProductDetail({ productId, onClose }: Props) {
 
   if (!product) return null;
 
-  const totalPieces = getTotalPieces();
+  useEffect(() => {
+    const releaseScrollLock = lockBodyScroll();
 
-  // Per-product discount based on current selection quantity
+    enterRafRef.current = window.requestAnimationFrame(() => {
+      enterRafNestedRef.current = window.requestAnimationFrame(() => {
+        setPhase('open');
+      });
+    });
+
+    return () => {
+      releaseScrollLock();
+
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+      }
+
+      if (enterRafRef.current !== null) {
+        window.cancelAnimationFrame(enterRafRef.current);
+      }
+
+      if (enterRafNestedRef.current !== null) {
+        window.cancelAnimationFrame(enterRafNestedRef.current);
+      }
+    };
+  }, []);
+
+  const isClosing = phase === 'closing';
+
+  const requestClose = useCallback((afterClose?: () => void) => {
+    if (isClosing) return;
+
+    setPhase('closing');
+    closeTimerRef.current = window.setTimeout(() => {
+      closeTimerRef.current = null;
+      onClose();
+      afterClose?.();
+    }, getMotionDuration(OVERLAY_MOTION_MS.modalClose));
+  }, [isClosing, onClose]);
+
+  const totalPieces = getTotalPieces();
   const gross = totalPieces * product.basePrice;
   const { discountPercent: currentDiscount, discountAmount: currentDiscountAmt } =
     totalPieces > 0 ? calculateDiscount(gross, totalPieces) : { discountPercent: 0, discountAmount: 0 };
   const currentFinal = gross - currentDiscountAmt;
 
-  const previewColor = product.colors.find(c => c.id === previewColorId) ?? product.colors[0]!;
+  const previewColor = product.colors.find((color) => color.id === previewColorId) ?? product.colors[0]!;
 
   const handleAddToCart = useCallback(() => {
     const items = getItemsToAdd();
-    if (items.length === 0) return;
+    if (items.length === 0 || isClosing) return;
 
     items.forEach(({ colorId, sizes }) => {
       addItem(product.id, colorId, sizes);
@@ -61,36 +105,41 @@ export function ProductDetail({ productId, onClose }: Props) {
       pieces: totalPieces,
     });
 
-    setAdded(true);
     resetSelection();
+    requestClose();
+    onAddedToCart?.();
+  }, [getItemsToAdd, isClosing, addItem, product.id, totalPieces, resetSelection, requestClose, onAddedToCart]);
 
-    // Mobile UX: after adding, close modal and return to catalog context.
-    if (window.innerWidth <= 900) {
-      onClose();
-      return;
-    }
+  const overlayClassName = [
+    styles.overlay,
+    phase === 'open' ? styles.overlayVisible : '',
+    isClosing ? styles.overlayClosing : '',
+  ].filter(Boolean).join(' ');
 
-    setTimeout(() => setAdded(false), 2500);
-  }, [getItemsToAdd, addItem, product.id, totalPieces, resetSelection, onClose]);
-
-  const selectedColorIds = Object.entries(selection.selectedColors)
-    .filter(([, sel]) => sel)
-    .map(([id]) => id);
+  const modalClassName = [
+    styles.modal,
+    phase === 'open' ? styles.modalVisible : '',
+    isClosing ? styles.modalClosing : '',
+  ].filter(Boolean).join(' ');
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
-        {/* Close */}
+    <div
+      className={overlayClassName}
+      onClick={() => requestClose()}
+    >
+      <div
+        className={modalClassName}
+        onClick={(event) => event.stopPropagation()}
+      >
         <button
           className={styles.closeBtn}
-          onClick={onClose}
+          onClick={() => requestClose()}
           type="button"
           aria-label="Fechar"
         >
-          ✕
+          &times;
         </button>
 
-        {/* Gallery */}
         <div className={styles.gallery}>
           <PhotoGallery
             color={previewColor}
@@ -101,27 +150,18 @@ export function ProductDetail({ productId, onClose }: Props) {
           />
         </div>
 
-        {/* Info */}
         <div className={styles.info}>
           <div className={styles.scrollArea}>
-            {/* Tag */}
-            <div className={styles.tag}>
-              <span className={styles.tagDot} />
-              {product.collectionLabel}
-            </div>
-
-            {/* Name */}
             <h1 className={styles.name}>
-              {product.name.split(' ').map((word, i, arr) =>
-                i === arr.length - 1
-                  ? <span key={i} className={styles.accent}>{word}</span>
+              {product.name.split(' ').map((word, index, words) =>
+                index === words.length - 1
+                  ? <span key={index} className={styles.accent}>{word}</span>
                   : word + ' '
               )}
             </h1>
 
             <p className={styles.subtitle}>{product.shortDescription}</p>
 
-            {/* Price */}
             <div className={styles.priceBlock}>
               <span className={styles.priceTag}>
                 {formatCurrency(product.basePrice)}
@@ -132,10 +172,8 @@ export function ProductDetail({ productId, onClose }: Props) {
               </div>
             </div>
 
-            {/* Discount info — per this product's quantity only */}
             <DiscountInfo currentPieces={totalPieces} />
 
-            {/* Order panel */}
             <div className={styles.orderPanel}>
               <h3 className={styles.orderTitle}>
                 <span className={styles.orderIcon}>✦</span>
@@ -160,18 +198,16 @@ export function ProductDetail({ productId, onClose }: Props) {
               />
             </div>
 
-            {/* Composition */}
             <div className={styles.infoBar}>
               <div className={styles.pills}>
-                {product.composition.map((comp) => (
-                  <span key={comp} className={styles.pill}>{comp}</span>
+                {product.composition.map((composition) => (
+                  <span key={composition} className={styles.pill}>{composition}</span>
                 ))}
               </div>
               <span className={styles.ref}>Ref: {product.reference}</span>
             </div>
           </div>
 
-          {/* Summary bar */}
           <div className={styles.summary}>
             <div className={styles.summaryLeft}>
               <span className={styles.summaryPieces}>
@@ -194,18 +230,13 @@ export function ProductDetail({ productId, onClose }: Props) {
               )}
             </div>
 
-            {added ? (
-              <div className={styles.addedFeedback}>
-                ✓ Adicionado!
-              </div>
-            ) : (
-              <GoldButton
-                onClick={handleAddToCart}
-                disabled={totalPieces === 0}
-              >
-                Adicionar ao Carrinho
-              </GoldButton>
-            )}
+            <GoldButton
+              onClick={handleAddToCart}
+              disabled={totalPieces === 0 || isClosing}
+              className={styles.addButton}
+            >
+              Adicionar ao Carrinho
+            </GoldButton>
           </div>
         </div>
       </div>

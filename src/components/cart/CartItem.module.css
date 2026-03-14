@@ -6,12 +6,17 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  animation: slideInUp var(--dur-base) var(--ease-out) both;
-  transition: border-color var(--dur-fast) var(--ease-out);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-hover-in) var(--ease-interactive-in),
+    box-shadow var(--dur-hover-in) var(--ease-interactive-in),
+    background var(--dur-fast) var(--ease-out);
 }
 
 .item:hover {
   border-color: var(--gray-400);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.05);
+  transform: translateY(var(--lift-hover-sm));
 }
 
 .header {
@@ -80,7 +85,12 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all var(--ease-default);
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-hover-in) var(--ease-interactive-in),
+    transform var(--dur-hover-in) var(--ease-interactive-in);
   flex-shrink: 0;
 }
 
@@ -96,18 +106,34 @@
   text-transform: uppercase;
   padding: 0 10px;
   cursor: pointer;
-  transition: all var(--ease-default);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-hover-in) var(--ease-interactive-in),
+    transform var(--dur-hover-in) var(--ease-interactive-in),
+    background var(--dur-fast) var(--ease-out);
 }
 
 .editBtn:hover {
   border-color: var(--gold);
   color: var(--gold-dark);
+  background: var(--white);
+  box-shadow: 0 10px 20px rgba(201, 168, 76, 0.12);
+  transform: translateY(var(--lift-hover-sm));
 }
 
 .removeBtn:hover {
   background: var(--red-light);
   border-color: var(--red-warn);
   color: var(--red-warn);
+  box-shadow: 0 10px 20px rgba(214, 58, 59, 0.12);
+  transform: translateY(var(--lift-hover-sm));
+}
+
+.removeBtn:active,
+.editBtn:active {
+  transform: translateY(0) scale(var(--press-scale));
+  transition-duration: 90ms;
 }
 
 .variants {
@@ -126,6 +152,16 @@
   border-radius: var(--radius-sm);
   padding: 8px;
   background: var(--gray-100);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-hover-in) var(--ease-interactive-in);
+}
+
+.variantRow:hover {
+  border-color: var(--gray-300);
+  background: var(--white);
+  transform: translateY(var(--lift-hover-sm));
 }
 
 .variantText {
@@ -161,6 +197,25 @@
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-hover-in) var(--ease-interactive-in),
+    transform var(--dur-hover-in) var(--ease-interactive-in);
+}
+
+.qtyBtn:hover {
+  background: var(--gold-light);
+  border-color: rgba(201, 168, 76, 0.38);
+  color: var(--gold-dark);
+  box-shadow: 0 8px 18px rgba(201, 168, 76, 0.12);
+  transform: translateY(var(--lift-hover-sm));
+}
+
+.qtyBtn:active {
+  transform: translateY(0) scale(0.92);
+  transition-duration: 80ms;
 }
 
 .qtyValue {
@@ -182,13 +237,25 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all var(--ease-default);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-hover-in) var(--ease-interactive-in),
+    transform var(--dur-hover-in) var(--ease-interactive-in);
 }
 
 .removeSizeBtn:hover {
   color: var(--gray-700);
   border-color: var(--gray-300);
   background: var(--gray-100);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+  transform: translateY(var(--lift-hover-sm));
+}
+
+.removeSizeBtn:active {
+  transform: translateY(0) scale(0.92);
+  transition-duration: 80ms;
 }
 
 .removeSizeBtn:focus-visible {
@@ -253,8 +320,18 @@
 
 @media (max-width: 600px) {
   .item {
-    padding: 10px;
-    gap: 7px;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .headerActions {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .name {
@@ -303,13 +380,28 @@
 
   .editBtn,
   .removeBtn {
-    min-height: 34px;
-    min-width: 34px;
+    min-height: 40px;
+    min-width: 40px;
+  }
+
+  .editBtn {
+    flex: 1;
   }
 
   .removeSizeBtn {
-    width: 34px;
-    height: 34px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .qtyBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .qtyValue {
+    min-width: 26px;
+    font-size: 13px;
   }
 
   .subtotal {

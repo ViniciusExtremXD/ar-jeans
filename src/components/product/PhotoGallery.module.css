@@ -4,6 +4,8 @@
   background: var(--blue-light);
   transition: background 0.4s;
   min-height: 420px;
+  height: 100%;
+  width: 100%;
 }
 
 /* ── Decorative shapes ── */
@@ -106,14 +108,11 @@
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.12));
-  transition:
-    opacity var(--dur-base) var(--ease-out),
-    transform var(--dur-base) var(--ease-out);
+  transition: opacity 0.3s ease;
 }
 
 .fading {
   opacity: 0;
-  transform: scale(0.97);
 }
 
 /* ── Thumbnails ── */
@@ -137,28 +136,21 @@
   border: 2.5px solid var(--white);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition:
-    transform var(--dur-base) var(--ease-spring),
-    border-color var(--dur-fast) var(--ease-out),
-    box-shadow var(--dur-base) var(--ease-out);
+  transition: transform var(--ease-default), border-color var(--ease-default),
+    box-shadow var(--ease-default);
   position: relative;
   padding: 0;
 }
 
 .thumb:hover {
-  transform: scale(1.08);
+  transform: scale(1.06);
   border-color: var(--gold);
-}
-
-.thumb:active {
-  transform: scale(1.02);
-  transition-duration: 60ms;
 }
 
 .thumbActive {
   border-color: var(--gold) !important;
   box-shadow: 0 4px 14px rgba(201, 168, 76, 0.4);
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 .thumb img {
@@ -216,23 +208,20 @@
 .catalogLabel {
   position: absolute;
   bottom: 18px;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 8.5px;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding-left: 44px;
+  justify-content: center;
 }
 
 .catalogLabel::after {
-  content: '';
-  height: 1px;
-  width: 30px;
-  background: var(--gold);
+  display: none;
 }
 
 /* ── Responsive ── */
@@ -283,8 +272,8 @@
     -webkit-overflow-scrolling: touch;
   }
   .thumb {
-    width: 52px;
-    height: 62px;
+    width: 56px;
+    height: 68px;
     border-radius: 5px;
     border-width: 2px;
     flex: 0 0 auto;
@@ -335,8 +324,8 @@
     min-height: 0;
   }
   .thumb {
-    width: 46px;
-    height: 56px;
+    width: 52px;
+    height: 64px;
     border-radius: 4px;
   }
   .thumbLabel {

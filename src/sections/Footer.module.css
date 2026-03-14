@@ -176,13 +176,32 @@
 
 @media (max-width: 500px) {
   .footer {
-    padding: 34px 14px 0;
+    padding: 28px 14px 0;
   }
 
   .main {
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding-bottom: 28px;
+    gap: 18px;
+    padding-bottom: 24px;
+  }
+
+  .socialLink {
+    min-height: 40px;
+    padding: 8px 0;
+  }
+
+  .navLink {
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .mapsLink {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
   }
 
   .navTitle {

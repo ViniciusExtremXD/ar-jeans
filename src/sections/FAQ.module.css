@@ -56,12 +56,14 @@
   overflow: hidden;
   transition:
     border-color var(--dur-fast) var(--ease-out),
-    box-shadow var(--dur-base) var(--ease-out);
+    box-shadow var(--dur-hover-in) var(--ease-interactive-in),
+    transform var(--dur-hover-in) var(--ease-interactive-in);
 }
 
 .itemOpen {
   border-color: var(--gold);
-  box-shadow: 0 4px 16px rgba(201,168,76,0.12);
+  box-shadow: 0 16px 28px rgba(201, 168, 76, 0.12);
+  transform: translateY(-1px);
 }
 
 .question {
@@ -79,7 +81,9 @@
   font-size: 14px;
   font-weight: 600;
   color: var(--gray-800);
-  transition: color var(--dur-fast) var(--ease-out);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-hover-in) var(--ease-interactive-in);
   line-height: 1.4;
 }
 
@@ -89,6 +93,7 @@
 
 .question:hover {
   color: var(--black);
+  transform: translateY(var(--lift-hover-sm));
 }
 
 .arrow {
@@ -97,7 +102,7 @@
   color: var(--gold);
   flex-shrink: 0;
   line-height: 1;
-  transition: transform var(--dur-base) var(--ease-out);
+  transition: transform var(--dur-accordion) var(--ease-overlay-shell-enter);
 }
 
 .arrowOpen {
@@ -108,7 +113,7 @@
 .answerWrap {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows var(--dur-slow) var(--ease-out);
+  transition: grid-template-rows var(--dur-accordion) var(--ease-overlay-shell-enter);
 }
 
 .itemOpen .answerWrap {
@@ -119,11 +124,15 @@
   overflow: hidden;
   padding: 0 20px 18px;
   opacity: 0;
-  transition: opacity var(--dur-base) var(--ease-out);
+  transform: translate3d(0, 8px, 0) scale(0.996);
+  transition:
+    opacity var(--dur-overlay-content-in) var(--ease-overlay-content-enter),
+    transform var(--dur-overlay-content-in) var(--ease-overlay-content-enter);
 }
 
 .itemOpen .answer {
   opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
 }
 
 .answer p {
@@ -135,7 +144,7 @@
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .section {
-    padding: 34px 14px;
+    padding: 30px 14px;
   }
 
   .title {
@@ -150,7 +159,7 @@
   .question {
     font-size: 12px;
     padding: 12px;
-    min-height: 46px;
+    min-height: 48px;
   }
 
   .arrow {

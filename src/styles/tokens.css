@@ -44,10 +44,14 @@
 
   /* ── Motion: Duration ── */
   --dur-instant:  100ms;
-  --dur-fast:     160ms;
+  --dur-fast:     140ms;
   --dur-base:     260ms;
-  --dur-slow:     400ms;
-  --dur-xslow:    600ms;
+  --dur-slow:     600ms;
+  --dur-xslow:    900ms;
+  --dur-hover-in: 220ms;
+  --dur-hover-out: 160ms;
+  --dur-accordion: 420ms;
+  --dur-reveal-section: 540ms;
 
   /* ── Motion: Easing ── */
   --ease-out:        cubic-bezier(0.16, 1, 0.3, 1);
@@ -64,4 +68,42 @@
   --stagger-sm:   40ms;
   --stagger-md:   60ms;
   --stagger-lg:   80ms;
+
+  /* ── Motion: Overlay presets ── */
+  --dur-overlay-backdrop-in:  320ms;
+  --dur-overlay-backdrop-out: 240ms;
+  --dur-product-shell-in:     560ms;
+  --dur-product-shell-out:    380ms;
+  --dur-cart-shell-in:        520ms;
+  --dur-cart-shell-out:       360ms;
+  --dur-overlay-content-in:   240ms;
+  --dur-overlay-content-out:  180ms;
+  --dur-overlay-handoff:      90ms;
+
+  /* ── Motion: Overlay easings ── */
+  --ease-overlay-backdrop-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-overlay-backdrop-exit:  cubic-bezier(0.4, 0.08, 0.22, 1);
+  --ease-overlay-shell-enter:    cubic-bezier(0.2, 0.88, 0.24, 1);
+  --ease-overlay-shell-exit:     cubic-bezier(0.38, 0.06, 0.2, 1);
+  --ease-overlay-content-enter:  cubic-bezier(0.2, 0.84, 0.26, 1);
+  --ease-overlay-content-exit:   cubic-bezier(0.38, 0.06, 0.2, 1);
+  --ease-interactive-in:         var(--ease-overlay-shell-enter);
+  --ease-interactive-out:        var(--ease-overlay-shell-exit);
+
+  /* ── Motion: Interactive presets ── */
+  --lift-hover-sm: -1px;
+  --lift-hover-md: -3px;
+  --press-scale: 0.96;
+
+  /* ── Motion: Backwards-compatible aliases ── */
+  --dur-overlay-in:   var(--dur-overlay-backdrop-in);
+  --dur-overlay-out:  var(--dur-overlay-backdrop-out);
+  --dur-panel-in:     var(--dur-product-shell-in);
+  --dur-panel-out:    var(--dur-product-shell-out);
+  --dur-content-in:   var(--dur-overlay-content-in);
+  --dur-content-out:  var(--dur-overlay-content-out);
+  --ease-overlay-in:  var(--ease-overlay-backdrop-enter);
+  --ease-overlay-out: var(--ease-overlay-backdrop-exit);
+  --ease-panel-in:    var(--ease-overlay-shell-enter);
+  --ease-panel-out:   var(--ease-overlay-shell-exit);
 }

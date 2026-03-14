@@ -76,12 +76,12 @@
 
 @media (max-width: 600px) {
   .wrap { gap: 6px; margin-bottom: 6px; }
-  .btn { min-height: 34px; padding: 6px 10px; font-size: 9px; gap: 6px; border-width: 1.5px; }
+  .btn { min-height: 40px; padding: 7px 11px; font-size: 9.5px; gap: 6px; border-width: 1.5px; }
   .dot { width: 11px; height: 11px; }
   .check { width: 13px; height: 13px; font-size: 8px; }
 }
 
 @media (max-width: 400px) {
   .wrap { gap: 5px; margin-bottom: 4px; }
-  .btn { min-height: 32px; padding: 5px 8px; font-size: 8px; gap: 4px; }
+  .btn { min-height: 40px; padding: 6px 9px; font-size: 8.5px; gap: 5px; }
 }

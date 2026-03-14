@@ -9,9 +9,9 @@
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(201, 168, 76, 0.08);
   transition:
-    background var(--dur-base) var(--ease-in-out),
-    box-shadow var(--dur-base) var(--ease-in-out),
-    border-color var(--dur-base) var(--ease-in-out);
+    background var(--dur-base) var(--ease-overlay-content-enter),
+    box-shadow var(--dur-base) var(--ease-overlay-content-enter),
+    border-color var(--dur-base) var(--ease-overlay-content-enter);
   animation: fadeIn var(--dur-slow) var(--ease-out) both;
 }
 
@@ -29,7 +29,9 @@
   display: flex;
   align-items: center;
   gap: 28px;
-  transition: height 0.28s ease, padding 0.28s ease;
+  transition:
+    height var(--dur-base) var(--ease-overlay-content-enter),
+    padding var(--dur-base) var(--ease-overlay-content-enter);
 }
 
 .scrolled .inner {
@@ -93,14 +95,14 @@
   transition:
     color var(--dur-fast) var(--ease-out),
     background var(--dur-fast) var(--ease-out),
-    transform var(--dur-fast) var(--ease-out);
+    transform var(--dur-hover-in) var(--ease-interactive-in);
   white-space: nowrap;
 }
 
 .navLink:hover {
   color: var(--white);
   background: rgba(255, 255, 255, 0.06);
-  transform: translateY(-1px);
+  transform: translateY(var(--lift-hover-sm));
 }
 
 .navLink:active {
@@ -129,14 +131,14 @@
   transition:
     color var(--dur-fast) var(--ease-out),
     border-color var(--dur-fast) var(--ease-out),
-    transform var(--dur-fast) var(--ease-out);
+    transform var(--dur-hover-in) var(--ease-interactive-in);
   white-space: nowrap;
 }
 
 .instaBtn:hover {
   color: #e1306c;
   border-color: rgba(225, 48, 108, 0.4);
-  transform: translateY(-1px);
+  transform: translateY(var(--lift-hover-sm));
 }
 
 .instaBtn:active {
@@ -155,16 +157,16 @@
   cursor: pointer;
   transition:
     background var(--dur-fast) var(--ease-out),
-    transform var(--dur-base) var(--ease-spring),
-    box-shadow var(--dur-fast) var(--ease-out);
+    transform var(--dur-hover-in) var(--ease-interactive-in),
+    box-shadow var(--dur-hover-in) var(--ease-interactive-in);
   white-space: nowrap;
   letter-spacing: 0.02em;
 }
 
 .whatsBtn:hover {
   background: var(--gold-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(201,168,76,0.35);
+  transform: translateY(var(--lift-hover-sm));
+  box-shadow: 0 16px 28px rgba(201, 168, 76, 0.18);
 }
 
 .whatsBtn:active {
@@ -222,7 +224,7 @@
   background: rgba(10, 10, 10, 0.98);
   border-top: 1px solid rgba(201, 168, 76, 0.1);
   padding: 12px 20px 20px;
-  animation: slideInUp var(--dur-base) var(--ease-out) both;
+  animation: fadeUpSm var(--dur-base) var(--ease-overlay-content-enter) both;
   max-height: calc(100vh - 64px);
   overflow-y: auto;
 }
@@ -247,8 +249,8 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition:
     color var(--dur-fast) var(--ease-out),
-    transform var(--dur-fast) var(--ease-out),
-    padding-left var(--dur-base) var(--ease-out);
+    transform var(--dur-hover-in) var(--ease-interactive-in),
+    padding-left var(--dur-hover-in) var(--ease-interactive-in);
 }
 
 .mobileLink:hover {
@@ -300,14 +302,14 @@
   cursor: pointer;
   transition:
     background var(--dur-fast) var(--ease-out),
-    transform var(--dur-base) var(--ease-spring),
-    box-shadow var(--dur-fast) var(--ease-out);
+    transform var(--dur-hover-in) var(--ease-interactive-in),
+    box-shadow var(--dur-hover-in) var(--ease-interactive-in);
 }
 
 .mobileWhats:hover {
   background: var(--gold-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(201,168,76,0.4);
+  transform: translateY(var(--lift-hover-sm));
+  box-shadow: 0 16px 28px rgba(201, 168, 76, 0.18);
 }
 
 .mobileWhats:active {
@@ -354,40 +356,56 @@
 
 @media (max-width: 600px) {
   .inner {
-    height: 52px;
-    padding: 0 12px;
+    height: 50px;
+    padding: 0 10px;
     gap: 8px;
   }
 
   .scrolled .inner {
-    height: 54px;
+    height: 52px;
+  }
+
+  .logo {
+    min-height: 40px;
+    padding: 6px 0;
+    align-items: center;
   }
 
   .logoAR {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .logoSep {
-    font-size: 13px;
+    font-size: 11px;
   }
 
   .logoJeans {
-    font-size: 11px;
-    letter-spacing: 0.1em;
+    font-size: 9.5px;
+    letter-spacing: 0.11em;
+  }
+
+  .hamburger {
+    width: 44px;
+    height: 44px;
+    padding: 10px;
   }
 
   .mobileMenu {
-    padding: 10px 14px 14px;
-    max-height: calc(100vh - 54px);
+    padding: 10px 12px 16px;
+    max-height: calc(100dvh - 50px);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
   }
 
   .mobileLink {
     font-size: 15px;
-    padding: 13px 0;
+    padding: 14px 0;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
   }
 
   .mobileInsta,
   .mobileWhats {
-    min-height: 42px;
+    min-height: 44px;
   }
 }

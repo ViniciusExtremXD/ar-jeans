@@ -40,14 +40,31 @@
 }
 
 @media (max-width: 600px) {
-  .grid { grid-template-columns: repeat(3, 1fr); gap: 4px; margin-bottom: 6px; }
-  .tabs { gap: 4px; margin-bottom: 6px; flex-wrap: wrap; }
-  .tab { min-height: 32px; padding: 5px 9px; font-size: 8.5px; }
-  .tabDot { width: 6px; height: 6px; }
+  .grid { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px; }
+  .tabs {
+    gap: 6px;
+    margin-bottom: 8px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    min-height: 36px;
+    padding: 0 11px;
+    font-size: 10px;
+    flex: 0 0 auto;
+  }
+  .tabDot { width: 7px; height: 7px; }
+}
+
+@media (max-width: 360px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 400px) {
-  .grid { grid-template-columns: repeat(2, 1fr); gap: 4px; margin-bottom: 4px; }
-  .tabs { gap: 3px; margin-bottom: 5px; }
-  .tab { min-height: 30px; padding: 4px 7px; font-size: 8px; }
+  .tabs { gap: 4px; margin-bottom: 6px; }
+  .tab { min-height: 34px; padding: 0 9px; font-size: 9px; }
 }

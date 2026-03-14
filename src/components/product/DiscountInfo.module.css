@@ -101,20 +101,37 @@
   }
 
   .tiers {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 6px;
   }
 
   .tier {
-    padding: 7px;
+    padding: 7px 6px;
+  }
+
+  .tierLabel {
+    font-size: 7px;
+    line-height: 1.2;
   }
 
   .tierValue {
-    font-size: 12px;
+    font-size: 11px;
+    line-height: 1.15;
+  }
+
+  .tierRange {
+    font-size: 8px;
+    line-height: 1.3;
   }
 
   .helper {
     font-size: 10px;
     line-height: 1.4;
+  }
+}
+
+@media (max-width: 340px) {
+  .tiers {
+    grid-template-columns: 1fr;
   }
 }

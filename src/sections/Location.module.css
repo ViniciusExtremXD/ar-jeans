@@ -148,41 +148,42 @@
 
 @media (max-width: 600px) {
   .section {
-    padding: 34px 14px;
+    padding: 30px 14px;
   }
 
   .title {
-    font-size: 26px;
+    font-size: 24px;
   }
 
   .address {
-    font-size: 14px;
+    font-size: 13.5px;
     margin-bottom: 8px;
   }
 
   .actions {
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
 
   .hours {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
   .note {
     max-width: none;
+    padding: 12px 14px;
   }
 
   .btnPrimary,
   .btnSecondary {
     text-align: center;
     justify-content: center;
-    min-height: 42px;
+    min-height: 44px;
     font-size: 12px;
     padding: 10px 14px;
   }
 
   .mapWrap {
-    height: 240px;
+    height: 220px;
   }
 }

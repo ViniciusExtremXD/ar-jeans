@@ -165,7 +165,7 @@ a.contactItem:hover {
 
 @media (max-width: 600px) {
   .section {
-    padding: 34px 14px;
+    padding: 30px 14px;
   }
 
   .title {
@@ -187,7 +187,7 @@ a.contactItem:hover {
   .ctaSecondary {
     justify-content: center;
     text-align: center;
-    min-height: 42px;
+    min-height: 44px;
     font-size: 13px;
     padding: 10px 14px;
   }

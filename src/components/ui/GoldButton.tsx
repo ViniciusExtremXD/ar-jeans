@@ -8,6 +8,7 @@ interface Props {
   variant?: 'primary' | 'secondary' | 'whatsapp';
   fullWidth?: boolean;
   type?: 'button' | 'submit';
+  className?: string;
 }
 
 const WhatsAppIcon = () => (
@@ -23,11 +24,13 @@ export function GoldButton({
   variant = 'primary',
   fullWidth = false,
   type = 'button',
+  className = '',
 }: Props) {
   const cls = [
     styles.btn,
     styles[variant],
     fullWidth ? styles.fullWidth : '',
+    className,
   ]
     .filter(Boolean)
     .join(' ');

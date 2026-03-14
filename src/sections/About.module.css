@@ -213,7 +213,7 @@
 
 @media (max-width: 600px) {
   .section {
-    padding: 34px 14px;
+    padding: 30px 14px;
   }
 
   .title {
@@ -234,7 +234,7 @@
 
   .pillars {
     gap: 8px;
-    margin-top: 14px;
+    margin-top: 12px;
   }
 
   .pillar {
@@ -244,5 +244,16 @@
 
   .infoRow {
     padding: 12px 14px;
+  }
+
+  .infoLink {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 4px 0;
+  }
+
+  .instaCard {
+    padding: 14px;
   }
 }

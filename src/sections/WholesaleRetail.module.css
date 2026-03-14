@@ -24,12 +24,16 @@
   gap: 16px;
   text-align: left;
   cursor: pointer;
-  transition: box-shadow var(--ease-default), border-color var(--ease-default);
+  transition:
+    box-shadow var(--dur-hover-in) var(--ease-interactive-in),
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-hover-in) var(--ease-interactive-in);
 }
 
 .trigger:hover {
   border-color: rgba(201, 168, 76, 0.45);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.07);
+  transform: translateY(var(--lift-hover-sm));
 }
 
 .triggerCopy {
@@ -50,7 +54,7 @@
   font-size: 11px;
   flex-shrink: 0;
   transition:
-    transform var(--dur-base) var(--ease-out),
+    transform var(--dur-accordion) var(--ease-overlay-shell-enter),
     color var(--dur-fast) var(--ease-out),
     background var(--dur-fast) var(--ease-out),
     border-color var(--dur-fast) var(--ease-out);
@@ -65,7 +69,7 @@
 
 .expandWrap {
   overflow: hidden;
-  transition: max-height var(--dur-slow) var(--ease-out);
+  transition: max-height var(--dur-accordion) var(--ease-overlay-shell-enter);
 }
 
 .expandContent {
@@ -73,6 +77,16 @@
   display: flex;
   flex-direction: column;
   gap: 26px;
+  opacity: 0;
+  transform: translate3d(0, 10px, 0) scale(0.996);
+  transition:
+    opacity var(--dur-overlay-content-in) var(--ease-overlay-content-enter),
+    transform var(--dur-overlay-content-in) var(--ease-overlay-content-enter);
+}
+
+.expandWrap[aria-hidden='false'] .expandContent {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
 }
 
 /* ── Header ── */
@@ -123,6 +137,15 @@
   flex-direction: column;
   gap: 20px;
   position: relative;
+  transition:
+    transform var(--dur-hover-in) var(--ease-interactive-in),
+    box-shadow var(--dur-hover-in) var(--ease-interactive-in),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(var(--lift-hover-sm));
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.07);
 }
 
 .cardFeatured {
@@ -197,7 +220,12 @@
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-hover-in) var(--ease-interactive-in),
+    transform var(--dur-hover-in) var(--ease-interactive-in);
 }
 
 .cardCta {
@@ -208,6 +236,7 @@
 
 .cardCta:hover {
   background: var(--gray-200);
+  transform: translateY(var(--lift-hover-sm));
 }
 
 .cardCtaFeatured {
@@ -218,7 +247,8 @@
 
 .cardCtaFeatured:hover {
   background: var(--gold-dark);
-  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(201, 168, 76, 0.22);
+  transform: translateY(var(--lift-hover-sm));
 }
 
 /* ── Tiers ── */
@@ -420,7 +450,11 @@
 
 @media (max-width: 480px) {
   .section {
-    padding: 18px 14px 10px;
+    padding: 14px 14px 8px;
+  }
+
+  .expandContent {
+    gap: 18px;
   }
 
   .tiers {
@@ -428,8 +462,8 @@
   }
 
   .card {
-    padding: 14px;
-    gap: 12px;
+    padding: 12px;
+    gap: 10px;
   }
 
   .cardTitle {
@@ -461,7 +495,7 @@
   }
 
   .sizeGroup {
-    padding: 12px;
+    padding: 10px;
   }
 
   .sizes {

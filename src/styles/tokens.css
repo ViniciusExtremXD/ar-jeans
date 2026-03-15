@@ -74,7 +74,7 @@
   --dur-overlay-backdrop-out: 240ms;
   --dur-product-shell-in:     560ms;
   --dur-product-shell-out:    380ms;
-  --dur-cart-shell-in:        520ms;
+  --dur-cart-shell-in:        1500ms;
   --dur-cart-shell-out:       360ms;
   --dur-overlay-content-in:   240ms;
   --dur-overlay-content-out:  180ms;

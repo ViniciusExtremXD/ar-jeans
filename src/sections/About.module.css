@@ -111,11 +111,11 @@
 }
 
 .infoLabel {
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--gray-300);
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.56);
 }
 
 .infoValue {

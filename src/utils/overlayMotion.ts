@@ -6,7 +6,7 @@ export const OVERLAY_MOTION_MS = {
   backdropExit: 240,
   productEnter: 560,
   productExit: 380,
-  cartEnter: 520,
+  cartEnter: 1500,
   cartExit: 360,
   contentEnter: 240,
   contentExit: 180,
